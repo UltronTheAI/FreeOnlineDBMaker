@@ -1,6 +1,6 @@
 const io = require('socket.io-client');
 
-const socket = io("https://5000-ultrontheai-acebuilds-b4nxmy2fvou.ws-us34.gitpod.io");
+const socket = io("https://free-online-db-maker.herokuapp.com");
 
 const fs = require('fs');
 const { exit } = require('process');
