@@ -10,6 +10,11 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/web/index.html');
 });
 
+app.get('/console', (req, res) => {
+    res.sendFile(__dirname + '/web/console.html');
+});
+
+
 // app.get('/api', (req, res) => {
 //     res.send(data(req.url));
 // });
