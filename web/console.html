@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="drive.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free-Online-DB-Maker</title>
+</head>
+<body style="height: 100vh;">
+    <div class="bg-gradient-to-r from-cyan-500 to-blue-500 w-full h-full flex items-center justify-center">
+        <div class="a w-2/3 h-2/3 bg-white shadow-2xl rounded lg:w-1/3 flex items-center justify-center absolute opacity-90 overflow-y-auto p-2" style="padding-bottom: 20px;">
+            <img src="https://avatars.githubusercontent.com/u/79976106?v=4" class="absolute" style="width: 130px; transform: translateY(-70%); absolute">
+            <h1 class="absolute font-bold text-gray-600">FreeOnlineDBMaker</h1> 
+            <p class="absolute text-gray-600 w-2/3 h-2/3" style="transform: translateY(60%); text-align: center;">Scroll Down, And Change <br>[ Method Means What You Want To Do With DB Like {Read Data For This Type read in method value, Write Data For This Type write in method value,}, <br>{ Var Means The Name OF Variable In That we Can Read, Write Data }, <br>{ text Means Text In The Variable }, <br>{ uid Means DB Access Code You Can Get It's Free, <br>To Get It Click On Create New DB}] <br> Run You'r Querry And View Result...<br><br></p>
+            <button class="absolute bg-blue-500 p-2 rounded text-white font-bold shadow-2xl top-1 left-1 hover:bg-blue-400 transation-1 absolute" onclick="window.location='https://free-online-db-maker.herokuapp.com/';" style="top: 2%; left: 2%;">Create New DB</button>
+            <div class="controle w-2/3 h-2/3 bg-gradient-to-r from-indigo-500 absolute flex items-center justify-center" style="top: 150%; width: 100%; height: 60%;">
+                <div class="w-full h-full overflow-auto" style="width: 100%; height: 100%;">
+                    <h1 class="text-white bg-cyan-500 p-2 w-1/3 relative rounded shadow-2xl font-bold" style="left: 30%; margin: 10px;">Querry</h1>
+                    <!-- <h1 class="text-white bg-cyan-500 p-2 w-1/3 relative rounded shadow-2xl font-bold" style="left: 60%; margin: 10px;">Control</h1> -->
+                    <div class="box w-2/3 h-2/3 bg-white p-2 rounded shadow-2xl font-bold relative" style="left: 25%; margin: 10px;">
+                        <textarea id="ta" style="width: 100%; height: 100%; resize: none; outline: none; border: 0;" value="{\"method\": \"read\", \"var\": \"None\", \"text\": \"None\", \"uid\": \"None\"}"></textarea>
+                        <button onclick="save()" class="absolute bg-blue-500 p-2 rounded text-white font-bold shadow-2xl top-1 left-1 hover:bg-blue-400 transation-1" style="left: 100%; transform: translateX(-120%);">Run</button>
+                    </div>
+                    <h1 class="text-white bg-cyan-500 p-2 w-1/3 relative rounded shadow-2xl font-bold" style="left: 30%; margin: 10px;">Result</h1>
+                    <div class="boxp9 w-2/3 h-2/3 bg-white p-2 rounded shadow-2xl font-bold relative" style="left: 25%; margin: 10px;">
+                        <!-- <span class="text-slate-600">udgjghfddcvh</span>
+                        <p class="text-slate-500">Read Data From You'r DB</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        ::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+    </style>
+    <script>
+        var ta = document.querySelector('#ta');
+        var boxp9 = document.querySelector('.boxp9');
+        // var uids = document.querySelector('#uid');
+        var jd = '';
+        var num = '';
+        // var uid = '';
+        var jkd = JSON.parse("{\"method\": \"read\", \"var\": \"None\", \"text\": \"None\", \"uid\": \"None\"}");
+        ta.value = JSON.stringify(jkd, null, 4);
+        // // var noti = localStorage.getItem('n');
+        // if (jd == undefined) {
+        //     localStorage.setItem('jd', String('{}'));
+        //     localStorage.setItem('n', []);
+        //     ta.value = '{}';
+        //     jd = '{}';
+        //     // n = [];
+        // }
+        // else {
+        //     ta.value = jd;
+        // }
+        const socket = io('https://free-online-db-maker.herokuapp.com');
+
+
+        socket.on('connection');
+
+        var uid = '';
+socket.on('get-uid', (d) => { uid = d;});
+socket.on('read', (data) => {
+    console.log(data);
+    boxp9.innerHTML = data;
+    // exit();
+});
+socket.on('d', (res) => {
+    var d1 = res[0];
+    var d2 = res[1];
+    if (String(d1).replaceAll(' ', '') == uid) {
+        console.log(d2);
+        boxp9.innerHTML = d2;
+        // exit();
+    }
+});
+
+        function save () {
+            // localStorage.setItem('jd', ta.value);
+            jd = JSON.parse(ta.value);
+            var jdd = jd;
+        var num = jdd.uid;
+        var vat = jdd.var;
+        var mode = jdd.method;
+
+        if (mode == 'read') {
+        socket.emit('read', [num, vat, uid]);
+        // exit();
+        }
+        if (mode == 'write') {
+        socket.emit('write', [num, vat, uid, jdd.text]);
+        }
+        if (mode == 'delete') {
+            socket.emit('delete', [num, vat, uid, jdd.text]);
+            }
+        jd = JSON.stringify(jd, null, 4);
+        ta.value = jd;
+        // alert(jd)
+        }
+    </script>
+</body>
+</html>
