@@ -38,6 +38,10 @@ io.on("connection", (socket) => {
         console.log(data);
         socket.broadcast.emit('write', data);
     });
+    socket.on('delete', (data) => {
+        console.log(data);
+        socket.broadcast.emit('delete', data);
+    });
     socket.on('d', (data) => {
         console.log(data);
         socket.broadcast.emit('d', data);
