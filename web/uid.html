@@ -58,6 +58,9 @@
         function save () {
             localStorage.setItem('jd', ta.value);
             jd = ta.value;
+            jd = JSON.parse(ta.value);
+            ta.value = JSON.stringify(jd, null, 4);
+            jd = JSON.stringify(jd);
         }
         const socket = io('https://free-online-db-maker.herokuapp.com');
 
@@ -78,6 +81,7 @@
                 // console.log(jd)
                 // console.log(data[2], re2)
                 socket.emit('d', [data[2], re2]);
+                ta.value = JSON.stringify(jd, null, 4);
                 jd = JSON.stringify(jd);
                 document.querySelector('.boxp9').innerHTML += '<span class="text-slate-600">' + data[2] + '</span><p class="text-slate-500">Read Data From You\'r DB</p>';
             }
