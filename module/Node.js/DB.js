@@ -5,7 +5,7 @@ const socket = io("https://free-online-db-maker.herokuapp.com");
 const fs = require('fs');
 const { exit } = require('process');
 
-const prompt = require('prompt-sync')();
+// const prompt = require('prompt-sync')();
 
 // const num = prompt('Enter a number: ');
 
@@ -29,6 +29,9 @@ socket.on('get-uid', (d) => { uid = d;
         if (mode == 'write') {
         socket.emit('write', [num, vat, uid, jdd.text]);
         }
+        if (mode == 'delete') {
+            socket.emit('delete', [num, vat, uid, jdd.text]);
+            }
       }) 
     });
 
