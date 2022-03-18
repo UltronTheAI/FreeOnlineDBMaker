@@ -4,10 +4,14 @@ const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, { cors: { origin: "*" } });
 
+var num__0 = 0;
 // var vm = {};
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/web/index.html');
+});
+app.get('/socket', (req, res) => {
+    res.send(String(num__0);
 });
 
 app.get('/console', (req, res) => {
@@ -28,6 +32,7 @@ app.get('/GetUid', (req, res) => {
 server.listen(process.env.PORT || 5000);
 
 io.on("connection", (socket) => {
+    num__0 += 1;
     console.log("User connected... user id = " + socket.id);
 
     socket.emit('get-uid', socket.id);
