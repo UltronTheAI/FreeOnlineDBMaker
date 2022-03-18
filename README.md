@@ -10,4 +10,6 @@ Chech It Out And Use This In Chrome For Free  https://free-online-db-maker.herok
   1.Python => Go To <a href="https://ultrontheai.github.io/FreeOnlineDBMaker/module/Python.html">Module</a> And Use This DB
   
   2.Node.js => Go To <a href="https://ultrontheai.github.io/FreeOnlineDBMaker/module/NodeJs.html">Module</a> And Use This DB
+  
+  2.Js => Go To <a href="https://ultrontheai.github.io/FreeOnlineDBMaker/module/JS.html">Module</a> And Use This DB
 
