@@ -65,7 +65,8 @@ socket.on('get-uid', (d) => { uid = d;
     });
 
 socket.on('read', (data) => {
-    console.log(data);
+    if (data[2] == uid){
+    console.log(data);}
     // exit();
 });
 socket.on('d', (res) => {
