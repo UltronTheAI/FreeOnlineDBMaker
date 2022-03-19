@@ -39,8 +39,9 @@ socket.on('get-uid', uid)
 
 def read(data):
 
-    print(data)
-    socket.disconnect()
+    if data[2] == uid_:
+        print(data)
+        socket.disconnect()
     # socket.dissconnect()
 
 def write(data):
