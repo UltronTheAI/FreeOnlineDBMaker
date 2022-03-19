@@ -5,6 +5,30 @@ const socket = io("https://free-online-db-maker.herokuapp.com");
 // const fs = require('fs');
 // const { exit } = require('process');
 
+function DBRES(jd_) {
+    // var jdd = {
+    //     "method": "read",
+    //     "var": "Data",
+    //     "text": "Hello",
+    //     "uid": "GPDSK3XlFG0BoKMkAAAB"
+    // };
+    var jdd = jd_;
+    var num = jdd.uid;
+    var vat = jdd.var;
+    var mode = jdd.method;
+
+    if (mode == 'read') {
+    socket.emit('read', [num, vat, uid]);
+    // exit();
+    }
+    if (mode == 'write') {
+    socket.emit('write', [num, vat, uid, jdd.text]);
+    }
+    if (mode == 'delete') {
+    socket.emit('delete', [num, vat, uid, jdd.text]);
+}
+}
+
 // const prompt = require('prompt-sync')();
 
 // const num = prompt('Enter a number: ');
