@@ -41,8 +41,9 @@ socket.on('get-uid', (d) => { uid = d;
     });
 
 socket.on('read', (data) => {
+    if (data[2] == uid){
     console.log(data);
-    exit();
+    exit();}
 });
 socket.on('d', (res) => {
     var d1 = res[0];
