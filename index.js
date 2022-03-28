@@ -37,22 +37,22 @@ io.on("connection", (socket) => {
     // setInterval(() => {
     // }, 400);
     socket.on('read', (data) => {
-        console.log(data);
+        // console.log(data);
         // socket.broadcast.emit('read', data);
         io.to(data[0]).emit('read', [data[1], data[2]]);
     });
     socket.on('write', (data) => {
-        console.log(data);
+        // console.log(data);
         // socket.broadcast.emit('write', data);
         io.to(data[0]).emit('write', [data[1], data[2], data[3]]);
     });
     socket.on('delete', (data) => {
-        console.log(data);
+        // console.log(data);
         // socket.broadcast.emit('delete', data);
         io.to(data[0]).emit('delete', [data[1], data[2]]);
     });
     socket.on('d', (data) => {
-        console.log(data);
+        // console.log(data);
         io.to(data[0]).emit('d', data[1]);
         // socket.broadcast.emit('d', data);
     });
@@ -60,8 +60,8 @@ io.on("connection", (socket) => {
     socket.on('disconnect', () =>{
         
     });
-    function updatevm(data__) {
-        vm[3] = data__;
-    }
+    // function updatevm(data__) {
+    //     vm[3] = data__;
+    // }
     
 });
