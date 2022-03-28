@@ -44,10 +44,29 @@
         var ta = document.querySelector('#ta');
         var boxp9 = document.querySelector('.boxp9');
         // var uids = document.querySelector('#uid');
+        // var jk = localStorage.getItem('jk');
         var jd = '';
         var num = '';
         // var uid = '';
         var jkd = JSON.parse("{\"method\": \"read\", \"var\": \"None\", \"text\": \"None\", \"uid\": \"None\"}");
+        ta.value = JSON.stringify(jkd, null, 4);
+        // if (jk == undefined) {
+        //     localStorage.setItem('jk', ['read', 'Data', '', 'uid']);
+        //     jkd.method = jk[0];
+        //     jkd.var = jk[1];
+        //     jkd.text = jk[2];
+        //     jkd.uid = jk[3];
+        //     jk = localStorage.getItem('jk');
+        //     // n = [];
+        // }
+        // if (jk != undefined) {
+        //     alert(jk)
+        //     jkd.method = jk[0];
+        //     jkd.var = jk[1];
+        //     jkd.text = jk[2];
+        //     jkd.uid = jk[3];
+        //     jk = localStorage.getItem('jk');
+        // }
         ta.value = JSON.stringify(jkd, null, 4);
         // // var noti = localStorage.getItem('n');
         // if (jd == undefined) {
@@ -60,7 +79,7 @@
         // else {
         //     ta.value = jd;
         // }
-        const socket = io('https://free-online-db-maker.herokuapp.com');
+        const socket = io('http://free-online-db-maker.herokuapp.com/');
 
 
         socket.on('connection');
@@ -73,13 +92,13 @@ socket.on('read', (data) => {
     // exit();
 });
 socket.on('d', (res) => {
-    var d1 = res[0];
-    var d2 = res[1];
-    if (String(d1).replaceAll(' ', '') == uid) {
-        console.log(d2);
-        boxp9.innerHTML = String(d2);
+    // var d1 = res[0];
+    // var d2 = res[1];
+    // if (String(d1).replaceAll(' ', '') == uid) {
+    //     console.log(d2);
+        boxp9.innerHTML = String(res);
         // exit();
-    }
+    // }
 });
 
         function save () {
@@ -89,6 +108,7 @@ socket.on('d', (res) => {
         var num = jdd.uid;
         var vat = jdd.var;
         var mode = jdd.method;
+        // localStorage.setItem('jk', [mode, vat, jdd.text, num]);
 
         if (mode == 'read') {
         socket.emit('read', [num, vat, uid]);
@@ -98,7 +118,7 @@ socket.on('d', (res) => {
         socket.emit('write', [num, vat, uid, jdd.text]);
         }
         if (mode == 'delete') {
-            socket.emit('delete', [num, vat, uid, jdd.text]);
+            socket.emit('delete', [num, vat, uid]);
             }
         jd = JSON.stringify(jd, null, 4);
         ta.value = jd;
