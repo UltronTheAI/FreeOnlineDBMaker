@@ -14,18 +14,20 @@ function DBRES(jd_) {
     // };
     var jdd = jd_;
     var num = jdd.uid;
-    var vat = jdd.var;
-    var mode = jdd.method;
+        var vat = jdd.var;
+        var mode = jdd.method;
+        // localStorage.setItem('jk', [mode, vat, jdd.text, num]);
 
-    if (mode == 'read') {
-    socket.emit('read', [num, vat, uid]);
-    // exit();
-    }
-    if (mode == 'write') {
-    socket.emit('write', [num, vat, uid, jdd.text]);
-    }
-    if (mode == 'delete') {
-    socket.emit('delete', [num, vat, uid, jdd.text]);
+        if (mode == 'read') {
+        socket.emit('read', [num, vat, uid]);
+        // exit();
+        }
+        if (mode == 'write') {
+        socket.emit('write', [num, vat, uid, jdd.text]);
+        }
+        if (mode == 'delete') {
+            socket.emit('delete', [num, vat, uid]);
+            }
 }
 }
 
@@ -50,30 +52,32 @@ socket.on('get-uid', (d) => { uid = d;
         var num = jdd.uid;
         var vat = jdd.var;
         var mode = jdd.method;
+        // localStorage.setItem('jk', [mode, vat, jdd.text, num]);
 
         if (mode == 'read') {
         socket.emit('read', [num, vat, uid]);
         // exit();
         }
         if (mode == 'write') {
-            socket.emit('write', [num, vat, uid, jdd.text]);
+        socket.emit('write', [num, vat, uid, jdd.text]);
         }
         if (mode == 'delete') {
-            socket.emit('delete', [num, vat, uid, jdd.text]);
-        }
+            socket.emit('delete', [num, vat, uid]);
+            }
     //   }) 
     });
 
 socket.on('read', (data) => {
-    if (data[2] == uid){
-    console.log(data);}
+    console.log(data);
+    boxp9.innerHTML = String(data);
     // exit();
 });
 socket.on('d', (res) => {
-    var d1 = res[0];
-    var d2 = res[1];
-    if (String(d1).replaceAll(' ', '') == uid) {
-        console.log(d2);
+    // var d1 = res[0];
+    // var d2 = res[1];
+    // if (String(d1).replaceAll(' ', '') == uid) {
+    //     console.log(d2);
+        boxp9.innerHTML = String(res);
         // exit();
-    }
+    // }
 });
