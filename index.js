@@ -7,6 +7,20 @@ const io = require("socket.io")(server, { cors: { origin: "*" } });
 
 // var vm = {};
 
+app.get('/api', (req, res) => {
+    var iuiid = ap (req.url);
+    // var myuid = '';
+    const socketC = ioc("http://free-online-db-maker.herokuapp.com/");
+    socketC.on('connection');
+    socketC.on('get-uid', (d) => { 
+        // socketC.disconnect();
+        socketC.emit('read', [iuiid, 'None', d])
+    });
+    socketC.on('d', (data) => {
+        res.send(data);
+    });
+});
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/web/index.html');
 });
