@@ -2,21 +2,21 @@ const express = require("express");
 const res = require("express/lib/response");
 const app = express();
 const server = require("http").createServer(app);
-const io = require("socket.io")(server, { cors: { origin: "*" } });
 const ioc = require('socket.io-client');
+const io = require("socket.io")(server, { cors: { origin: "*" } });
 
 
 // var vm = {};
-
-
+// var uk = '';
 var exr = 0;
 var uk_id = '';
+var uk_id2 = '';
 
-// function sleep(ms) {
-//     return new Promise((resolve) => {
-//       setTimeout(resolve, ms);
-//     });
-//   }
+function sleep(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
 
 function ap (d) {
     // uk_id = '';
@@ -25,20 +25,21 @@ function ap (d) {
     for (let i = 5; i < d.length; i++) {
         t += d[i];
     }
-     t = t.replaceAll('%25', '%')
+    t = t.replaceAll('%25', '%')
     var jdd_ = t.split('%&%')
     // var id__ = '';
     if (exr == 0) {
         uk_id = '';
-        var u_ = '';
-        var sc = ioc('https://free-online-db-maker.herokuapp.com/');
-        sc.on ('get-uid', (id_) => {
-            // id__ = id_;
-
-                uk_id = uid_;
-            var mode = jdd_[1];
+        uk_id2 = '';
+        // var u_ = '';
+        var mode = jdd_[1];
         var num = jdd_[0];
         var vat = jdd_[2];
+        var sc = ioc('https://free-online-db-maker.herokuapp.com');
+        sc.on ('get-uid', (uid_) => {
+                // id__ = id_;
+
+                uk_id = uid_;
                 // uk_id2 = uid_;
 
                 if (mode == 'read') {
@@ -50,7 +51,6 @@ function ap (d) {
                 if (mode == 'delete') {
                     sc.emit('delete', [num, vat, uid_]);
                 }
-
             // sc.disconnect();
             // delete id__;
             // res.send(id__);
@@ -70,7 +70,9 @@ function ap (d) {
     }
     if(exr == 1) {
         exr = 0;
-        return uk_id;
+        // if (uk_id2 == jdd_[0]) {
+            return uk_id;
+        // }
     }
 }
 
@@ -110,8 +112,9 @@ io.on("connection", (socket) => {
     // setInterval(() => {
     // }, 400);
     socket.on('read', (data) => {
-        // console.log(data);
+        console.log(data);
         // socket.broadcast.emit('read', data);
+        // uk = data[1];
         io.to(data[0]).emit('read', [data[1], data[2]]);
     });
     socket.on('write', (data) => {
@@ -125,7 +128,7 @@ io.on("connection", (socket) => {
         io.to(data[0]).emit('delete', [data[1], data[2]]);
     });
     socket.on('d', (data) => {
-        // console.log(data);
+        console.log(data);
         if (data[0] != uk_id) {
             io.to(data[0]).emit('d', data[1]);
         }
