@@ -20,24 +20,24 @@ var uk_id2 = '';
 
 function security(vat) {
     
-    var test2 = 0, e = 'Error You Can Not Save Password, Email, Link, Number, Payment Card Number In Thi\'s DB', uk_id = '';
+    var test2 = 0, e = 'Error You Can Not Save Password, Email, Link, Number, Payment Card Number In Thi\'s DB';
 
-    if (vat.indexOf('@') != -1) {
-        if (vat.indexOf('http:') != -1) {
-            if (vat.indexOf('https:') != -1) {
-                if (vat.indexOf('.') != -1) {
-                    if (vat.indexOf('gmail') != -1) {
-                        if (vat.indexOf('0') != -1) {
-                            if (vat.indexOf('1') != -1) {
-                                if (vat.indexOf('2') != -1) {
-                                    if (vat.indexOf('3') != -1) {
-                                        if (vat.indexOf('4') != -1) {
-                                            if (vat.indexOf('5') != -1) {
-                                                if (vat.indexOf('6') != -1) {
-                                                    if (vat.indexOf('7') != -1) {
-                                                        if (vat.indexOf('8') != -1) {
-                                                            if (vat.indexOf('9') != -1) {
-                                                                if (vat.indexOf('password') != -1) {
+    if (vat.indexOf('@') == -1) {
+        if (vat.indexOf('http:') == -1) {
+            if (vat.indexOf('https:') == -1) {
+                if (vat.indexOf('.') == -1) {
+                    if (vat.indexOf('gmail') == -1) {
+                        if (vat.indexOf('0') == -1) {
+                            if (vat.indexOf('1') == -1) {
+                                if (vat.indexOf('2') == -1) {
+                                    if (vat.indexOf('3') == -1) {
+                                        if (vat.indexOf('4') == -1) {
+                                            if (vat.indexOf('5') == -1) {
+                                                if (vat.indexOf('6') == -1) {
+                                                    if (vat.indexOf('7') == -1) {
+                                                        if (vat.indexOf('8') == -1) {
+                                                            if (vat.indexOf('9') == -1) {
+                                                                if (vat.indexOf('password') == -1) {
     /* security of thi's DataBase */                                test2 += 1;  
                                                                 } else { uk_id = e }
                                                             } else { uk_id = e }
@@ -54,8 +54,9 @@ function security(vat) {
                 } else { uk_id = e }
             } else { uk_id = e }
         } else { uk_id = e }
-    } else { uk_id = e }
-    delete uk_id, e
+    } else { uk_id = e; }
+    // delete e
+    // console.log(uk_id)
     return test2;
 }
 
@@ -178,11 +179,13 @@ io.on("connection", (socket) => {
     socket.on('write', (data) => {
         // console.log(data);
         // socket.broadcast.emit('write', data);
-        var vat_check = security(data[2]);
+        // console.log(data)
+        var vat_check = security(data[1]);
         // var e = 'Error You Can Not Save Password, Email, Link, Number, Payment Card Number In Thi\'s DB';
         var te_check = security(data[3]);
                     
         var all = vat_check + te_check;
+        console.log(all)
                     
         if (all == 2) {
             io.to(data[0]).emit('write', [data[1], data[2], data[3]]);
