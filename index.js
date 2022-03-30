@@ -9,6 +9,7 @@ const io = require("socket.io")(server, { cors: { origin: "*" } });
 // var vm = {};
 // var uk = '';
 var exr = 0;
+var sec = 0;
 var uk_id = '';
 var uk_id2 = '';
 
@@ -134,6 +135,16 @@ function ap (d) {
         // }
     }
 }
+
+setInterval( () => {
+    if (exr == 0) { 
+        sec += 1;
+        if(sec > 6) {
+            sec = 0;
+            exr = 1;
+        }
+    }
+}, 1000)
 
 app.get('/api', (req, res) => {
     // var iuiid = ap (req.url);
