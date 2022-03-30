@@ -33,9 +33,18 @@ function ap (d) {
         sc.on ('get-uid', (id_) => {
             // id__ = id_;
 
-            sc.emit('read', [t, 'None', id_]);
-            
-            uk_id = id_;
+                uk_id = uid_;
+                // uk_id2 = uid_;
+
+                if (mode == 'read') {
+                    sc.emit('read', [num, vat, uid_]);
+                }
+                if (mode == 'write') {
+                    sc.emit('write', [num, vat, uid_, jdd_[3]]);
+                }
+                if (mode == 'delete') {
+                    sc.emit('delete', [num, vat, uid_]);
+                }
 
             // sc.disconnect();
             // delete id__;
