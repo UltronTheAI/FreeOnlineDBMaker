@@ -12,11 +12,11 @@ var exr = 0;
 var uk_id = '';
 var uk_id2 = '';
 
-function sleep(ms) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-  }
+// function sleep(ms) {
+//     return new Promise((resolve) => {
+//       setTimeout(resolve, ms);
+//     });
+//   }
 
 function ap (d) {
     // uk_id = '';
@@ -27,6 +27,7 @@ function ap (d) {
     }
     t = t.replaceAll('%25', '%')
     var jdd_ = t.split('%&%')
+    // jdd_[1] = jdd_[1].replaceAll('DElete', 'delete')
     // var id__ = '';
     if (exr == 0) {
         uk_id = '';
@@ -35,20 +36,24 @@ function ap (d) {
         var mode = jdd_[1];
         var num = jdd_[0];
         var vat = jdd_[2];
-        var sc = ioc('https://free-online-db-maker.herokuapp.com');
+        var sc = ioc('https://5000-ultrontheai-acebuilds-b4nxmy2fvou.ws-us38.gitpod.io');
         sc.on ('get-uid', (uid_) => {
                 // id__ = id_;
 
                 uk_id = uid_;
                 // uk_id2 = uid_;
 
+
                 if (mode == 'read') {
+                    // console.log(jdd_)
                     sc.emit('read', [num, vat, uid_]);
                 }
                 if (mode == 'write') {
+                    // console.log(jdd_)
                     sc.emit('write', [num, vat, uid_, jdd_[3]]);
                 }
-                if (mode == 'delete') {
+                if (mode == 'DElete') {
+                    // console.log(jdd_)
                     sc.emit('delete', [num, vat, uid_]);
                 }
             // sc.disconnect();
@@ -112,7 +117,7 @@ io.on("connection", (socket) => {
     // setInterval(() => {
     // }, 400);
     socket.on('read', (data) => {
-        console.log(data);
+        // console.log(data);
         // socket.broadcast.emit('read', data);
         // uk = data[1];
         io.to(data[0]).emit('read', [data[1], data[2]]);
@@ -128,7 +133,7 @@ io.on("connection", (socket) => {
         io.to(data[0]).emit('delete', [data[1], data[2]]);
     });
     socket.on('d', (data) => {
-        console.log(data);
+        // console.log(data);
         if (data[0] != uk_id) {
             io.to(data[0]).emit('d', data[1]);
         }
