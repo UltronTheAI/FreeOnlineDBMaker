@@ -8,21 +8,61 @@ const ioc = require('socket.io-client');
 
 // var vm = {};
 
+
+var exr = 0;
+var uk_id = '';
+
+// function sleep(ms) {
+//     return new Promise((resolve) => {
+//       setTimeout(resolve, ms);
+//     });
+//   }
+
+function ap (d) {
+    // uk_id = '';
+    d = d.split("");
+    var t = '';
+    for (let i = 5; i < d.length; i++) {
+        t += d[i];
+    }
+    // var id__ = '';
+    if (exr == 0) {
+        uk_id = '';
+        var u_ = '';
+        var sc = ioc('https://5000-ultrontheai-acebuilds-b4nxmy2fvou.ws-us38.gitpod.io');
+        sc.on ('get-uid', (id_) => {
+            // id__ = id_;
+
+            uk_id = id_;
+
+            sc.emit('read', [t, 'None', id_]);
+            // sc.disconnect();
+            // delete id__;
+            // res.send(id__);
+        });
+        // var u_ = '';
+        // while (1) {
+        //     sc.on('d', (data) => {
+        //         u_ = data;
+        //     });
+        //     if (u_ != '') {
+        //         break;
+        //     }
+        // }
+        // sleep (800);
+        exr= 1;
+        return uk_id;
+    }
+    if(exr == 1) {
+        exr = 0;
+        return uk_id;
+    }
+}
+
 app.get('/api', (req, res) => {
-    var iuiid = ap (req.url);
+    // var iuiid = ap (req.url);
     // var myuid = '';
-    var id__ = '';
-    var sc = ioc('http://free-online-db-maker.herokuapp.com');
-    sc.on('d', (data) => {
-        res.send(data);
-    });
-    sc.on ('get-uid', (id_) => {
-        id__ = id_;
-        sc.emit('read', [iuiid, 'None', id__]);
-        delete id__;
-        delete iuiid;
-        // res.send(id__);
-    });
+    res.send(ap(req.url));
 });
 
 app.get('/', (req, res) => {
@@ -71,7 +111,12 @@ io.on("connection", (socket) => {
     });
     socket.on('d', (data) => {
         // console.log(data);
-        io.to(data[0]).emit('d', data[1]);
+        if (data[0] != uk_id) {
+            io.to(data[0]).emit('d', data[1]);
+        }
+        if (data[0] == uk_id) {
+            uk_id = data[1];
+        }
         // socket.broadcast.emit('d', data);
     });
 
