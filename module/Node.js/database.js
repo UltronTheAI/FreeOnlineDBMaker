@@ -8,7 +8,7 @@ socket.on('connection');
 socket.on('get-uid', (d) => { uid = d;});
 socket.on('read', (data) => {
     console.log(data);
-    boxp9.innerHTML = String(data);
+
     // exit();
 });
 socket.on('d', (res) => {
@@ -16,7 +16,7 @@ socket.on('d', (res) => {
     // var d2 = res[1];
     // if (String(d1).replaceAll(' ', '') == uid) {
     //     console.log(d2);
-        boxp9.innerHTML = String(res);
+        
         // exit();
     // }
 });
