@@ -33,9 +33,10 @@ function ap (d) {
         sc.on ('get-uid', (id_) => {
             // id__ = id_;
 
+            sc.emit('read', [t, 'None', id_]);
+            
             uk_id = id_;
 
-            sc.emit('read', [t, 'None', id_]);
             // sc.disconnect();
             // delete id__;
             // res.send(id__);
