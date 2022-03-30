@@ -144,7 +144,7 @@ setInterval( () => {
             exr = 0;
         }
     }
-}, 1000)
+}, 500)
 
 app.get('/api', (req, res) => {
     // var iuiid = ap (req.url);
