@@ -25,6 +25,8 @@ function ap (d) {
     for (let i = 5; i < d.length; i++) {
         t += d[i];
     }
+     t = t.replaceAll('%25', '%')
+    var jdd_ = t.split('%&%')
     // var id__ = '';
     if (exr == 0) {
         uk_id = '';
@@ -34,6 +36,9 @@ function ap (d) {
             // id__ = id_;
 
                 uk_id = uid_;
+            var mode = jdd_[1];
+        var num = jdd_[0];
+        var vat = jdd_[2];
                 // uk_id2 = uid_;
 
                 if (mode == 'read') {
