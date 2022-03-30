@@ -137,11 +137,11 @@ function ap (d) {
 }
 
 setInterval( () => {
-    if (exr == 0) { 
+    if (exr == 1) { 
         sec += 1;
         if(sec > 6) {
             sec = 0;
-            exr = 1;
+            exr = 0;
         }
     }
 }, 1000)
