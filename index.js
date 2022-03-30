@@ -36,7 +36,7 @@ function ap (d) {
         var mode = jdd_[1];
         var num = jdd_[0];
         var vat = jdd_[2];
-        var sc = ioc('https://5000-ultrontheai-acebuilds-b4nxmy2fvou.ws-us38.gitpod.io');
+        var sc = ioc('https://free-online-db-maker.herokuapp.com');
         sc.on ('get-uid', (uid_) => {
                 // id__ = id_;
 
