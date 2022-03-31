@@ -2,7 +2,7 @@
 
     http://free-online-db-maker.herokuapp.com/
 
-    Copy this <a href="https://raw.githubusercontent.com/UltronTheAI/FreeOnlineDBMaker/main/module/Python/FODB.py">FODB.py</a> code to a new file name as FODB.py in your project,
+    Copy this <a https://raw.githubusercontent.com/UltronTheAI/FreeOnlineDBMaker/main/module/Python/FODB.py code to a new file and name it as FODB.py in your project,
 
     Learn to use this db, read this all info,
 
