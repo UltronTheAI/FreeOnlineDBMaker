@@ -1,5 +1,7 @@
 import requests, time
 
+# Learn To Use Thi's DB With Python https://github.com/UltronTheAI/FreeOnlineDBMaker/blob/main/Python.md
+
 def DataBase_API(mode, target, var, text = 'DataBase'):
 
     app = requests.get(f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}')
