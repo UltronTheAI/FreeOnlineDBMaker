@@ -1,6 +1,8 @@
 # FreeOnlineDBMaker
 
-✔ You can not save [ number, password, email, link ] in this db...
+😉 Easy, Fast And Safe DataBase . . .
+
+✔ You can not save [ number, password, email, link, -, +, *, /, space ] in this db...
 
 Chech It Out And Use This In Chrome For Free  https://free-online-db-maker.herokuapp.com/
 
