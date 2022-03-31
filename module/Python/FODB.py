@@ -1,6 +1,6 @@
 import requests, time
 
-# Learn To Use Thi's DB With Python https://github.com/UltronTheAI/FreeOnlineDBMaker/blob/main/Python.md
+# Learn To Use Thi's DB With Python https://ultrontheai.github.io/FreeOnlineDBMaker/Python.md
 
 def DataBase_API(mode, target, var, text = 'DataBase'):
 
