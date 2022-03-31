@@ -10,7 +10,7 @@ def DataBase_API(mode, target, var, text = 'DataBase'):
 
     if 'Error You Can Not' in app.text:
 
-        print ('\033[91m Error You Can Not Save Password, Email, Link, Number, Payment Card Number In Thi\'s DB')
+        print ('\033[91m Error You Can Not Save Password, Email, Link, Number, Payment Card Number, _, -, +, /, *, space In Thi\'s DB')
         exit()
         # return 'Error You Can Not Save Password, Email, Link, Number, Payment Card Number In Thi\'s DB'
 
