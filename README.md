@@ -6,14 +6,6 @@
 
 Chech It Out And Use This In Chrome For Free  https://free-online-db-maker.herokuapp.com/
 
-or
-
-you can use this python file to create a db https://github.com/UltronTheAI/FreeOnlineDBMaker/blob/main/FODB-DB.py
-
-and i had created a exe file to create a database
-
-Download this Database exe file  https://github.com/UltronTheAI/FreeOnlineDBMaker/blob/main/FODB.exe
-
 
 # Use DB With Module
 
