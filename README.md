@@ -6,8 +6,6 @@
 
 Chech It Out And Use This In Chrome For Free  https://free-online-db-maker.herokuapp.com/
 
-Learn To Use This DB https://youtu.be/LNme2OoGTr4
-
 
 # Use DB With Module
 
