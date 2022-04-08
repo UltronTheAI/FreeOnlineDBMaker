@@ -21,6 +21,8 @@ var uk_id2 = '';
 
 function security(vat) {
     
+    vat = String(vat);
+    
     var test2 = 0, e = 'Error You Can Not Save Password, Email, Link, Number, Payment Card Number In Thi\'s DB';
 
     if (vat.indexOf('@') == -1) {
