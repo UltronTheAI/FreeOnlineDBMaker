@@ -10,7 +10,7 @@ or
 
 you can use this python file to create a db https://github.com/UltronTheAI/FreeOnlineDBMaker/blob/main/FODB-DB.py
 
-and i had created a exe file
+and i had created a exe file to create a database
 
 Download this Database exe file  https://github.com/UltronTheAI/FreeOnlineDBMaker/blob/main/FODB.exe
 
