@@ -323,3 +323,15 @@ io.on("connection", (socket) => {
     // }
     
 });
+
+
+setInterval(function () {
+    fs.readFile(__dirname + '/f.json', 'utf8' , (err, data) => {
+          if (err) {
+            console.error(err)
+            return
+          }
+          console.log(data)
+    });
+}, 5000);
+
