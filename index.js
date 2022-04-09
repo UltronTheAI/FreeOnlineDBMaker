@@ -292,6 +292,7 @@ io.on("connection", (socket) => {
                                 // res.send('okay')
                                 // code
                                 // setTimeout(() => {
+                                    console.log(data)
                                 socket.emit('d', u_n_id);
                                 // }, 2000);
                             }
