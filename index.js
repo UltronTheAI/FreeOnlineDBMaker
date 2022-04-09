@@ -381,3 +381,14 @@ io.on("connection", (socket) => {
     // }
     
 });
+setInterval(() => {
+    fs.readFile(__dirname + '/f.json', 'utf8' , (err, data1) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        else {
+            console.log(data1)
+        }
+    });
+}, 5000);
