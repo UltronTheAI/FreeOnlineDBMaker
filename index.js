@@ -282,7 +282,7 @@ io.on("connection", (socket) => {
                         // data = json.parse(String(data));
                         var u_n_id = makeid();
                         var nd_ = new Date();
-                        data[data1] = {"start": [nd_.getUTCFullYear(), 0, 0, 0, 0, 0], "end": [0, 0, 0, 0, 0, 0], "uid": u_n_id}
+                        data[data1] = {"start": [nd_.getUTCFullYear(), nd_.getMonth(), nd_.getDay(), nd_.getHours(), nd_.getMinutes(), nd_.getSeconds()], "uid": u_n_id}
                         data['nv_'].push(u_n_id)
                         data = JSON.stringify(data);
                         // nv_.push(data1)
@@ -296,7 +296,7 @@ io.on("connection", (socket) => {
                                 // res.send('okay')
                                 // code
                                 // setTimeout(() => {
-                                    console.log(data)
+                                    // console.log(data)
                                 socket.emit('d', u_n_id);
                                 // }, 2000);
                             }
