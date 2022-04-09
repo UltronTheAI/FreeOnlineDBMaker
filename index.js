@@ -195,13 +195,13 @@ app.get('/GetUid', (req, res) => {
         fru += ru[i];
     }
     delete ru;
-    // console.log(fru);
-    // if (string(nv_).indexOf(fru) != -1) {
+    console.log(fru);
+    if (string(nv_).indexOf(fru) != -1) {
         res.sendFile(__dirname + '/web/uid.html');
-    // }
-    // else {
-    //     res.send(404);
-    // }
+    }
+    else {
+        res.send(404);
+    }
 
 });
 
