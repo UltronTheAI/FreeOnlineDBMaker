@@ -229,12 +229,27 @@ io.on("connection", (socket) => {
     // }, 400);
     socket.on('read', (data) => {
         // console.log(data);
+        data.push('read')
         // socket.broadcast.emit('read', data);
         // uk = data[1];
-        io.to(data[0]).emit('read', [data[1], data[2]]);
+        fs.readFile(__dirname + '/f.json', 'utf8' , (err, data1) => {
+            if (err) {
+                console.error(err)
+                return
+            }
+            else {
+                data1 = JSON.parse(data1)
+                data1['log'].push(data)
+                data1 = JSON.stringify(data1)
+                fs.writeFile(__dirname + '/f.json', data1, err => {
+                    io.to(data[0]).emit('read', [data[1], data[2]]);
+                });
+            }
+        });
     });
     socket.on('write', (data) => {
         // console.log(data);
+        data.push('write');
         // socket.broadcast.emit('write', data);
         // console.log(data)
         var vat_check = security(data[1]);
@@ -245,16 +260,59 @@ io.on("connection", (socket) => {
         console.log(all)
                     
         if (all == 2) {
-            io.to(data[0]).emit('write', [data[1], data[2], data[3]]);
+            fs.readFile(__dirname + '/f.json', 'utf8' , (err, data1) => {
+                if (err) {
+                    console.error(err)
+                    return
+                }
+                else {
+                    data1 = JSON.parse(data1)
+                    data1['log'].push(data)
+                    data1 = JSON.stringify(data1)
+                    fs.writeFile(__dirname + '/f.json', data1, err => {
+                        // io.to(data[0]).emit('read', [data[1], data[2]]);
+                        io.to(data[0]).emit('write', [data[1], data[2], data[3]]);
+                    });
+                }
+            });
         }
         else {
-            io.to(data[2]).emit('d', 'Error You Can Not Save Password, Email, Link, Number, Payment Card Number In Thi\'s DB')
+            fs.readFile(__dirname + '/f.json', 'utf8' , (err, data1) => {
+                if (err) {
+                    console.error(err)
+                    return
+                }
+                else {
+                    data1 = JSON.parse(data1)
+                    data1['log'].push(data)
+                    data1 = JSON.stringify(data1)
+                    fs.writeFile(__dirname + '/f.json', data1, err => {
+                        // io.to(data[0]).emit('read', [data[1], data[2]]);
+                        io.to(data[2]).emit('d', 'Error You Can Not Save Password, Email, Link, Number, Payment Card Number In Thi\'s DB')
+                    });
+                }
+            });
         }
     });
     socket.on('delete', (data) => {
+        data.push('delete')
         // console.log(data);
         // socket.broadcast.emit('delete', data);
-        io.to(data[0]).emit('delete', [data[1], data[2]]);
+        fs.readFile(__dirname + '/f.json', 'utf8' , (err, data1) => {
+            if (err) {
+                console.error(err)
+                return
+            }
+            else {
+                data1 = JSON.parse(data1)
+                data1['log'].push(data)
+                data1 = JSON.stringify(data1)
+                fs.writeFile(__dirname + '/f.json', data1, err => {
+                    // io.to(data[0]).emit('read', [data[1], data[2]]);
+                    io.to(data[0]).emit('delete', [data[1], data[2]]);
+                });
+            }
+        });
     });
     socket.on('d', (data) => {
         // console.log(data);
@@ -268,7 +326,7 @@ io.on("connection", (socket) => {
     });
     socket.on('agree', (data1) => {
         data1 = String(data1)
-        if (data1 != null && data1 != undefined && data1 != '') {
+        if (data1 != null && data1 != undefined && data1 != '' && data1 != 'log' && data1 != 'nv_') {
             fs.readFile(__dirname + '/f.json', 'utf8' , (err, data) => {
                 if (err) {
                     console.error(err)
@@ -323,15 +381,3 @@ io.on("connection", (socket) => {
     // }
     
 });
-
-
-setInterval(function () {
-    fs.readFile(__dirname + '/f.json', 'utf8' , (err, data) => {
-          if (err) {
-            console.error(err)
-            return
-          }
-          console.log(data)
-    });
-}, 5000);
-
