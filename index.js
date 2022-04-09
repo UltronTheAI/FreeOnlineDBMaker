@@ -258,7 +258,6 @@ io.on("connection", (socket) => {
     });
     socket.on('agree', (data1) => {
         data1 = String(data1)
-        socket.emit('d', data1);
         if (data1 != null && data1 != undefined && data1 != '') {
             fs.readFile(__dirname + '/f.json', 'utf8' , (err, data) => {
                 if (err) {
@@ -266,7 +265,6 @@ io.on("connection", (socket) => {
                     return
                 }
                 else {
-                    socket.emit('d', data1);
                     if (Strint(data).indexOf(data1) == -1) { 
                         data = json.load(data);
                         data[data1] = {"start": [0, 0, 0, 0, 0, 0], "end": [0, 0, 0, 0, 0, 0]}
