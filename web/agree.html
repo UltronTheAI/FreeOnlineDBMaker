@@ -99,7 +99,7 @@
 </div>
 <script>
     // var u = 'http://localhost:5000/GetUid?';
-    const socket = io('http://free-online-db-maker.herokuapp.com/');
+    const socket = io('https://free-online-db-maker.herokuapp.com/');
 
     socket.on('connection');
 
@@ -108,7 +108,7 @@
     socket.on('d', (data) => {
       // u = u + data;
       // alert(u)
-      location.href='http://free-online-db-maker.herokuapp.com/GetUid?' + String(data);
+      location.href='https://free-online-db-maker.herokuapp.com/GetUid?' + String(data);
     });
 </script>
 </body>
