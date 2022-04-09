@@ -269,7 +269,7 @@ io.on("connection", (socket) => {
                         data[data1] = {"start": [0, 0, 0, 0, 0, 0], "end": [0, 0, 0, 0, 0, 0]}
                         data = json.stringify(data);
                         nv_.push(data1)
-                        fs.writeFile(__dirname + '/f.json', data, err => {
+                        fs.writeFile(__dirname + '/f.json', data2, err => {
                             if (err) {
                                 console.error(err)
                                 socket.emit('access', 'error');
