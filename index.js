@@ -285,14 +285,14 @@ io.on("connection", (socket) => {
                         fs.writeFile(__dirname + '/f.json', data, err => {
                             if (err) {
                                 console.error(err)
-                                socket.emit('access', null);
+                                socket.emit('d', null);
                                 return
                             }
                             else {
                                 // res.send('okay')
                                 // code
                                 // setTimeout(() => {
-                                socket.emit('access', u_n_id);
+                                socket.emit('d', u_n_id);
                                 // }, 2000);
                             }
                             //file written successfully
@@ -301,7 +301,7 @@ io.on("connection", (socket) => {
                 }
             })
         } else {
-            socket.emit('access', null);
+            socket.emit('d', null);
         }
 //   console.log(data)
         // res.send(data);
