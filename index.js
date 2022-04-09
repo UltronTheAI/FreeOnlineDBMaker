@@ -278,7 +278,8 @@ io.on("connection", (socket) => {
                         // console.log(nv_)
                         // data = json.parse(String(data));
                         var u_n_id = makeid();
-                        data[data1] = {"start": [0, 0, 0, 0, 0, 0], "end": [0, 0, 0, 0, 0, 0], "uid": u_n_id}
+                        var nd_ = new Date();
+                        data[data1] = {"start": [nd_.getUTCFullYear(), 0, 0, 0, 0, 0], "end": [0, 0, 0, 0, 0, 0], "uid": u_n_id}
                         data['nv_'].push(u_n_id)
                         data = JSON.stringify(data);
                         // nv_.push(data1)
@@ -298,8 +299,10 @@ io.on("connection", (socket) => {
                             }
                             //file written successfully
                         })
+                    } else {
+                        socket.emit('d', null);
                     }
-                }
+                } 
             })
         } else {
             socket.emit('d', null);
