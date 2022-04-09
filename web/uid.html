@@ -87,7 +87,8 @@
                 socket.emit('d', [data[1], re2]);
                 ta.value = JSON.stringify(jd, null, 4);
                 jd = JSON.stringify(jd);
-                document.querySelector('.boxp9').innerHTML += '<span class="text-slate-600">' + String(data[1]) + '</span><p class="text-slate-500">Read Data From You\'r DB</p>';
+                var datetime_ = new Date();
+                document.querySelector('.boxp9').innerHTML += '<span class="text-slate-600">' + String(data[1]) + '</span><p class="text-slate-500">Read Data From You\'r DB At <span class="text-slate-600">' + String(datetime_.getHours() + ' H | ' + datetime_.getMinutes() + ' M | ' + datetime_.getSeconds() + ' S') + '</span></p>';
             // }
         });
         // socket.on('hello', () => {
@@ -109,7 +110,8 @@
                 ta.value = JSON.stringify(jd, null, 4);
                 jd = JSON.stringify(jd);
                 localStorage.setItem('jd', jd);
-                document.querySelector('.boxp9').innerHTML += '<span class="text-slate-600">' + String(data[1]) + '</span><p class="text-slate-500">Write Data IN You\'r DB</p>';
+                var datetime_ = new Date();
+                document.querySelector('.boxp9').innerHTML += '<span class="text-slate-600">' + String(data[1]) + '</span><p class="text-slate-500">Write Data In You\'r DB At <span class="text-slate-600">' + String(datetime_.getHours() + ' H | ' + datetime_.getMinutes() + ' M | ' + datetime_.getSeconds() + ' S') + '</span></p>';
             // }
         });
         socket.on('delete', (data) => {
@@ -129,7 +131,8 @@
                 ta.value = JSON.stringify(jd, null, 4);
                 jd = JSON.stringify(jd);
                 localStorage.setItem('jd', jd);
-                document.querySelector('.boxp9').innerHTML += '<span class="text-slate-600">' + String(data[1]) + '</span><p class="text-slate-500">Delete Data IN You\'r DB</p>';
+                var datetime_ = new Date();
+                document.querySelector('.boxp9').innerHTML += '<span class="text-slate-600">' + String(data[1]) + '</span><p class="text-slate-500">Delete Data From You\'r DB At <span class="text-slate-600">' + String(datetime_.getHours() + ' H | ' + datetime_.getMinutes() + ' M | ' + datetime_.getSeconds() + ' S') + '</span></p>';
             // }
         });
     </script>
