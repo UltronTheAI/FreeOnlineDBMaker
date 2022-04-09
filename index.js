@@ -203,7 +203,7 @@ app.get('/GetUid', (req, res) => {
         else {
             data = JSON.parse(data);
             if (data['nv_'].indexOf(fru) != -1) {
-                res.sendFile(__dirname + '/web/index.html');
+                res.sendFile(__dirname + '/web/uid.html');
             }
             else {
                 res.send(404)
