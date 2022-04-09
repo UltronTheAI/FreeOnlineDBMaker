@@ -14,6 +14,7 @@ var sec = 0;
 var uk_id = '';
 var uk_id2 = '';
 var gl = 9;
+var nv_ = [];
 
 function makeid() {
     gl += 1;
@@ -194,8 +195,13 @@ app.get('/GetUid', (req, res) => {
         fru += ru[i];
     }
     delete ru;
-    console.log(fru);
-    res.sendFile(__dirname + '/web/uid.html');
+    // console.log(fru);
+    if (string(nv_).indexOf(fru) != -1) {
+        res.sendFile(__dirname + '/web/uid.html');
+    }
+    else {
+        res.send(404);
+    }
 
 });
 
@@ -249,26 +255,33 @@ io.on("connection", (socket) => {
         }
         // socket.broadcast.emit('d', data);
     });
-    socket.on('agree', (data) => {
-        data = String(data)
-        if (data != null && data != undefined && data != '') {
+    socket.on('agree', (data1) => {
+        data1 = String(data1)
+        if (data1 != null && data1 != undefined && data1 != '') {
             fs.readFile(__dirname + '/f.json', 'utf8' , (err, data) => {
                 if (err) {
                     console.error(err)
                     return
                 }
                 else {
-                    fs.writeFile(__dirname + '/f.json', data, err => {
-                        if (err) {
-                            console.error(err)
-                            return
-                        }
-                        else {
-                            // res.send('okay')
-                            // code
-                        }
-                        //file written successfully
-                    })
+                    if (Strint(data).indexOf(data1) == -1) { 
+                        data = json.load(data);
+                        data[data1] = {"start": [0, 0, 0, 0, 0, 0], "end": [0, 0, 0, 0, 0, 0]}
+                        data = json.stringify(data);
+                        nv_.push(data1)
+                        fs.writeFile(__dirname + '/f.json', data, err => {
+                            if (err) {
+                                console.error(err)
+                                return
+                            }
+                            else {
+                                // res.send('okay')
+                                // code
+                                socket.emit('access', data1);
+                            }
+                            //file written successfully
+                        })
+                    }
                 }
             })
     }
