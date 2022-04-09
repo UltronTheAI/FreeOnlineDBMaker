@@ -182,6 +182,9 @@ app.get('/', (req, res) => {
 app.get('/console', (req, res) => {
     res.sendFile(__dirname + '/web/console.html');
 });
+app.get('/agree', (req, res) => {
+    res.sendFile(__dirname + '/web/agree.html');
+});
 
 
 // app.get('/api', (req, res) => {
