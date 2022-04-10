@@ -355,7 +355,7 @@ io.on("connection", (socket) => {
                         // data = json.parse(String(data));
                         var u_n_id = makeid();
                         var nd_ = new Date();
-                        data[data1] = {"start": [nd_.getDate(), nd_.getTime()], "uid": u_n_id}
+                        data[data1] = {"start": [nd_.getFullYear(), nd_.getMonth(), nd_.getDay(), nd_.getHours(), nd_.getMinutes(), nd_.getSeconds()], "uid": u_n_id}
                         data[u_n_id] = {"cid": ""}
                         data['nv_'].push(u_n_id)
                         data = JSON.stringify(data);
