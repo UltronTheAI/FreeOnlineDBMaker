@@ -206,6 +206,7 @@ app.get('/GetUid', (req, res) => {
         else {
             data = JSON.parse(data);
             if (data['nv_'].indexOf(fru) != -1) {
+                delete data['nv_'][fru];
                 res.sendFile(__dirname + '/web/uid.html');
             }
             else {
@@ -221,7 +222,9 @@ app.get('/GetUid', (req, res) => {
 server.listen(process.env.PORT || 5000);
 
 io.on("connection", (socket) => {
-    console.log("User connected... user id = " + socket.id);
+    // console.log("User connected... user id = " + socket.id);
+    var d = new Date();
+    console.log(socket.id + ' connected at ' + String(d.getFullYear(), d.getMonth(), d.getDay(), d.getHours(), d.getMinutes(), d.getSeconds()))
 
     socket.emit('get-uid', socket.id);
 
@@ -341,6 +344,7 @@ io.on("connection", (socket) => {
                         var u_n_id = makeid();
                         var nd_ = new Date();
                         data[data1] = {"start": [nd_.getUTCFullYear(), nd_.getMonth(), nd_.getDay(), nd_.getHours(), nd_.getMinutes(), nd_.getSeconds()], "uid": u_n_id}
+                        data[u_n_id] = {"cid": ""}
                         data['nv_'].push(u_n_id)
                         data = JSON.stringify(data);
                         // nv_.push(data1)
@@ -374,7 +378,8 @@ io.on("connection", (socket) => {
     // });
 
     socket.on('disconnect', () =>{
-        
+        var d = new Date();
+        console.log(socket.id + ' disconnected at ' + String(d.getFullYear(), d.getMonth(), d.getDay(), d.getHours(), d.getMinutes(), d.getSeconds()))
     });
     // function updatevm(data__) {
     //     vm[3] = data__;
