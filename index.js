@@ -206,7 +206,7 @@ app.get('/GetUid', (req, res) => {
         else {
             data = JSON.parse(data);
             if (data['nv_'].indexOf(fru) != -1) {
-                delete data['nv_'][indexOf(fru) - 1];
+                delete data['nv_'][data['nv_'].indexOf(fru) - 1];
                 res.sendFile(__dirname + '/web/uid.html');
             }
             else {
