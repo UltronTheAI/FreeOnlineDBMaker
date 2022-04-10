@@ -209,6 +209,7 @@ app.get('/GetUid', (req, res) => {
                 // delete data['nv_'][fru];
                 console.log('delete ' + data['nv_'][data['nv_'].indexOf(fru)])
                 delete data['nv_'][data['nv_'].indexOf(fru)]
+                data = JSON.stringify(data);
                 fs.writeFile(__dirname + '/f.json', data, err => {
                     if (err) {
                         console.error(err)
