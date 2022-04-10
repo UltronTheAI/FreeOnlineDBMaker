@@ -208,7 +208,7 @@ app.get('/GetUid', (req, res) => {
             if (data['nv_'].indexOf(fru) != -1) {
                 // delete data['nv_'][fru];
                 console.log('delete ' + data['nv_'][data['nv_'].indexOf(fru)])
-                delete data['nv_'][data['nv_'].indexOf(fru)]
+                data['nv_'] = []
                 res.sendFile(__dirname + '/web/uid.html');
             }
             else {
