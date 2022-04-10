@@ -210,7 +210,14 @@ app.get('/GetUid', (req, res) => {
                 console.log('delete ' + data['nv_'][data['nv_'].indexOf(fru)])
                 delete data['nv_'][data['nv_'].indexOf(fru)]
                 fs.writeFile(__dirname + '/f.json', data, err => {
-                    res.sendFile(__dirname + '/web/uid.html');
+                    if (err) {
+                        console.error(err)
+                        // socket.emit('d', null);
+                        res.send(404);
+                    }
+                    else {
+                        res.sendFile(__dirname + '/web/uid.html');
+                    }
                 });
             }
             else {
