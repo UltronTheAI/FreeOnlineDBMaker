@@ -320,7 +320,7 @@ io.on("connection", (socket) => {
                         var nd_ = new Date();
                         // data[data1] = {"start": [nd_.getFullYear(), nd_.getMonth(), nd_.getDay(), nd_.getHours(), nd_.getMinutes(), nd_.getSeconds()], "uid": u_n_id}
                         // data[u_n_id] = {"cid": ""}
-                        console.log({"start": [nd_.getFullYear(), nd_.getMonth(), nd_.getDay(), nd_.getHours(), nd_.getMinutes(), nd_.getSeconds()], "uid": u_n_id});
+                        console.log({"start": [nd_.getFullYear(), nd_.getMonth(), nd_.getDay(), nd_.getHours(), nd_.getMinutes(), nd_.getSeconds()], "uid": u_n_id, "user_name": data1});
                         data['nv_'].push(u_n_id)
                         data = JSON.stringify(data);
                         // nv_.push(data1)
