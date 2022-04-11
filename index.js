@@ -166,6 +166,7 @@ setInterval( () => {
 app.get('/api', (req, res) => {
     // var iuiid = ap (req.url);
     // var myuid = '';
+    console.log(req.url)
     res.send(ap(req.url));
 });
 
