@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="drive.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free-Online-DB-Maker-Console</title>
 </head>
@@ -26,10 +25,9 @@
                         <button onclick="save()" class="absolute bg-blue-500 p-2 rounded text-white font-bold shadow-2xl top-1 left-1 hover:bg-blue-400 transation-1" style="left: 100%; transform: translateX(-120%);">Run</button>
                     </div>
                     <h1 class="text-white bg-cyan-500 p-2 w-1/3 relative rounded shadow-2xl font-bold" style="left: 30%; margin: 10px;">Result</h1>
-                    <div class="boxp9 w-2/3 h-2/3 bg-white p-2 rounded shadow-2xl font-bold relative" style="left: 25%; margin: 10px;">
-                        <!-- <span class="text-slate-600">udgjghfddcvh</span>
-                        <p class="text-slate-500">Read Data From You'r DB</p> -->
-                    </div>
+                    <iframe src="https://free-online-db-maker.herokuapp.com/api" class="boxp9 w-2/3 h-2/3 bg-white p-2 rounded shadow-2xl font-bold relative" style="left: 25%; margin: 10px;">
+                        
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -41,88 +39,40 @@
         }
     </style>
     <script>
+        var tb = 0;
+        function DBRES(mode, target, var_, text = '') {
+            if (tb == 0){
+                tb = 1;
+            boxp9.setAttribute('src', 'https://free-online-db-maker.herokuapp.com/api?tp1%&%tp2%&%tp3%&%tp4'.replace('tp1', target).replace('tp2', mode).replace('tp3', var_).replace('tp4', text));
+                setTimeout(function() {
+                    boxp9.setAttribute('src', 'https://free-online-db-maker.herokuapp.com/api');
+                    tb = 0;
+                }, 1000)
+            }
+        }
         var ta = document.querySelector('#ta');
         var boxp9 = document.querySelector('.boxp9');
-        // var uids = document.querySelector('#uid');
-        // var jk = localStorage.getItem('jk');
         var jd = '';
         var num = '';
-        // var uid = '';
         var jkd = JSON.parse("{\"method\": \"read\", \"var\": \"None\", \"text\": \"None\", \"uid\": \"None\"}");
         ta.value = JSON.stringify(jkd, null, 4);
-        // if (jk == undefined) {
-        //     localStorage.setItem('jk', ['read', 'Data', '', 'uid']);
-        //     jkd.method = jk[0];
-        //     jkd.var = jk[1];
-        //     jkd.text = jk[2];
-        //     jkd.uid = jk[3];
-        //     jk = localStorage.getItem('jk');
-        //     // n = [];
-        // }
-        // if (jk != undefined) {
-        //     alert(jk)
-        //     jkd.method = jk[0];
-        //     jkd.var = jk[1];
-        //     jkd.text = jk[2];
-        //     jkd.uid = jk[3];
-        //     jk = localStorage.getItem('jk');
-        // }
-        ta.value = JSON.stringify(jkd, null, 4);
-        // // var noti = localStorage.getItem('n');
-        // if (jd == undefined) {
-        //     localStorage.setItem('jd', String('{}'));
-        //     localStorage.setItem('n', []);
-        //     ta.value = '{}';
-        //     jd = '{}';
-        //     // n = [];
-        // }
-        // else {
-        //     ta.value = jd;
-        // }
-        const socket = io('https://free-online-db-maker.herokuapp.com');
-
-
-        socket.on('connection');
-
-        var uid = '';
-socket.on('get-uid', (d) => { uid = d;});
-socket.on('read', (data) => {
-    console.log(data);
-    boxp9.innerHTML = String(data);
-    // exit();
-});
-socket.on('d', (res) => {
-    // var d1 = res[0];
-    // var d2 = res[1];
-    // if (String(d1).replaceAll(' ', '') == uid) {
-    //     console.log(d2);
-        boxp9.innerHTML = String(res);
-        // exit();
-    // }
-});
-
+        ta.value = JSON.stringify(jkd, null, 4);  
         function save () {
-            // localStorage.setItem('jd', ta.value);
             jd = JSON.parse(ta.value);
             var jdd = jd;
-        var num = jdd.uid;
-        var vat = jdd.var;
-        var mode = jdd.method;
-        // localStorage.setItem('jk', [mode, vat, jdd.text, num]);
+            var num = jdd.uid;
+            var vat = jdd.var;
+            var mode = jdd.method;
 
-        if (mode == 'read') {
-        socket.emit('read', [num, vat, uid]);
-        // exit();
-        }
-        if (mode == 'write') {
-        socket.emit('write', [num, vat, uid, jdd.text]);
-        }
-        if (mode == 'delete') {
-            socket.emit('delete', [num, vat, uid]);
+            if (mode == 'read') {
+                DBRES('read', num, vat);
             }
-        jd = JSON.stringify(jd, null, 4);
-        ta.value = jd;
-        // alert(jd)
+            if (mode == 'write') {
+                DBRES('write', num, vat, jdd.text);
+            }
+            if (mode == 'delete') {
+                DBRES('delete', num, vat, jdd.text);
+            }
         }
     </script>
 </body>
