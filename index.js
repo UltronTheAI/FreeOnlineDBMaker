@@ -170,11 +170,7 @@ app.get('/api', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    // res.sendFile(__dirname + '/web/index.html');
-    let path = req.params.path;
-    res.send(path)
-    // if (isValidPath(path))
-    //   res.sendFile(__dirname + '/web/index.html');
+    res.sendFile(__dirname + '/web/index.html');
     // const fs = require('fs')
 
 // const content = 'Some content!'
