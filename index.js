@@ -96,7 +96,6 @@ function ap (d) {
         var mode = jdd_[1];
         var num = jdd_[0];
         var vat = jdd_[2];
-        console.log(jdd_)
         var sc = ioc('https://free-online-db-maker.herokuapp.com');
         sc.on ('get-uid', (uid_) => {
                 // id__ = id_;
@@ -125,7 +124,7 @@ function ap (d) {
                         uk_id = e;
                     }
                 }
-                if (mode == 'DElete') {
+                if (mode == 'delete') {
                     // console.log(jdd_)
                     sc.emit('delete', [num, vat, uid_]);
                 }
@@ -167,7 +166,6 @@ setInterval( () => {
 app.get('/api', (req, res) => {
     // var iuiid = ap (req.url);
     // var myuid = '';
-    console.log(req.url)
     res.send(ap(req.url));
 });
 
