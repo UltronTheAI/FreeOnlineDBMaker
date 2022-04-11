@@ -222,7 +222,7 @@ app.get('/GetUid', (req, res) => {
                 });
             }
             else {
-                res.send(404)
+                res.send('This DataBase Code Not Exit\'s, Try Again And Create a new DataBase...')
             }
         }
     });
@@ -236,7 +236,7 @@ server.listen(process.env.PORT || 5000);
 io.on("connection", (socket) => {
     // console.log("User connected... user id = " + socket.id);
     var d = new Date();
-    console.log(socket.id + ' connected at ' + String(d.getFullYear(), d.getMonth(), d.getDay(), d.getHours(), d.getMinutes(), d.getSeconds()))
+    console.log(socket.id + ' connected at ' + String(d.getFullYear() + ' | ' + d.getMonth() + ' | ' + d.getDay() + ' | ' + d.getHours() + ' | ' + d.getMinutes() + ' | ' + d.getSeconds()))
 
     socket.emit('get-uid', socket.id);
 
@@ -355,8 +355,9 @@ io.on("connection", (socket) => {
                         // data = json.parse(String(data));
                         var u_n_id = makeid();
                         var nd_ = new Date();
-                        data[data1] = {"start": [nd_.getFullYear(), nd_.getMonth(), nd_.getDay(), nd_.getHours(), nd_.getMinutes(), nd_.getSeconds()], "uid": u_n_id}
-                        data[u_n_id] = {"cid": ""}
+                        // data[data1] = {"start": [nd_.getFullYear(), nd_.getMonth(), nd_.getDay(), nd_.getHours(), nd_.getMinutes(), nd_.getSeconds()], "uid": u_n_id}
+                        // data[u_n_id] = {"cid": ""}
+                        console.log({"start": [nd_.getFullYear(), nd_.getMonth(), nd_.getDay(), nd_.getHours(), nd_.getMinutes(), nd_.getSeconds()], "uid": u_n_id});
                         data['nv_'].push(u_n_id)
                         data = JSON.stringify(data);
                         // nv_.push(data1)
@@ -377,12 +378,12 @@ io.on("connection", (socket) => {
                             //file written successfully
                         })
                     } else {
-                        socket.emit('d', null);
+                        socket.emit('d', 'This Name Is Taken By A User...');
                     }
                 } 
             })
         } else {
-            socket.emit('d', null);
+            socket.emit('d', 'This Name is undefined...');
         }
 //   console.log(data)
         // res.send(data);
@@ -391,21 +392,10 @@ io.on("connection", (socket) => {
 
     socket.on('disconnect', () =>{
         var d = new Date();
-        console.log(socket.id + ' disconnected at ' + String(d.getFullYear(), d.getMonth(), d.getDay(), d.getHours(), d.getMinutes(), d.getSeconds()))
+        console.log(socket.id + ' disconnected at ' + String(d.getFullYear() + ' ' + d.getMonth() + ' ' + d.getDay() + ' ' + d.getHours() + ' ' + d.getMinutes() + ' ' + d.getSeconds()))
     });
     // function updatevm(data__) {
     //     vm[3] = data__;
     // }
     
 });
-setInterval(() => {
-    fs.readFile(__dirname + '/f.json', 'utf8' , (err, data1) => {
-        if (err) {
-            console.error(err)
-            return
-        }
-        else {
-            console.log(data1)
-        }
-    });
-}, 5000);
