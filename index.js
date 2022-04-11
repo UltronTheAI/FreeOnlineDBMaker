@@ -247,20 +247,8 @@ io.on("connection", (socket) => {
         data.push('read')
         // socket.broadcast.emit('read', data);
         // uk = data[1];
-        fs.readFile(__dirname + '/f.json', 'utf8' , (err, data1) => {
-            if (err) {
-                console.error(err)
-                return
-            }
-            else {
-                data1 = JSON.parse(data1)
-                data1['log'].push(data)
-                data1 = JSON.stringify(data1)
-                fs.writeFile(__dirname + '/f.json', data1, err => {
+        console.log(data)
                     io.to(data[0]).emit('read', [data[1], data[2]]);
-                });
-            }
-        });
     });
     socket.on('write', (data) => {
         // console.log(data);
@@ -275,21 +263,8 @@ io.on("connection", (socket) => {
         console.log(all)
                     
         if (all == 2) {
-            fs.readFile(__dirname + '/f.json', 'utf8' , (err, data1) => {
-                if (err) {
-                    console.error(err)
-                    return
-                }
-                else {
-                    data1 = JSON.parse(data1)
-                    data1['log'].push(data)
-                    data1 = JSON.stringify(data1)
-                    fs.writeFile(__dirname + '/f.json', data1, err => {
-                        // io.to(data[0]).emit('read', [data[1], data[2]]);
+            console.log(data)
                         io.to(data[0]).emit('write', [data[1], data[2], data[3]]);
-                    });
-                }
-            });
         }
         else {
             fs.readFile(__dirname + '/f.json', 'utf8' , (err, data1) => {
@@ -313,21 +288,9 @@ io.on("connection", (socket) => {
         data.push('delete')
         // console.log(data);
         // socket.broadcast.emit('delete', data);
-        fs.readFile(__dirname + '/f.json', 'utf8' , (err, data1) => {
-            if (err) {
-                console.error(err)
-                return
-            }
-            else {
-                data1 = JSON.parse(data1)
-                data1['log'].push(data)
-                data1 = JSON.stringify(data1)
-                fs.writeFile(__dirname + '/f.json', data1, err => {
+        console.log(data)
                     // io.to(data[0]).emit('read', [data[1], data[2]]);
                     io.to(data[0]).emit('delete', [data[1], data[2]]);
-                });
-            }
-        });
     });
     socket.on('d', (data) => {
         // console.log(data);
