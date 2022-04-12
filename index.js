@@ -194,6 +194,7 @@ app.get('/agree', (req, res) => {
 // });
 
 app.get('/GetUid', (req, res) => {
+    console.log(req.url)
     var ru = req.url.split('');
     var fru = '';
     for (var i = 13; i < ru.length; i++) {
@@ -234,7 +235,7 @@ app.get('/GetUid', (req, res) => {
 
 // console.log(process.env.PORT)
 
-server.listen(process.env.PORT || 5000);
+server.listen(process.env.PORT || process.env.PORT);
 
 io.on("connection", (socket) => {
     // console.log("User connected... user id = " + socket.id);
