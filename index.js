@@ -104,6 +104,7 @@ function ap (d) {
                 // id__ = id_;
 
                 uk_id = uid_;
+                uk_id2 = num;
                 // uk_id2 = uid_;
 
 
@@ -152,9 +153,11 @@ function ap (d) {
         return uk_id;
     }
     if(exr == 1) {
-        exr = 0;
+        if (uk_id2 == jdd_[0]) {
+            exr = 0;
         // if (uk_id2 == jdd_[0]) {
             return uk_id;
+        }
         // }
     }
 }
@@ -173,6 +176,10 @@ app.get('/api', (req, res) => {
     // var iuiid = ap (req.url);
     // var myuid = '';
     res.send(ap(req.url));
+});
+
+app.get('/access', (req, res) => {
+    res.send('hi')
 });
 
 app.get('/', (req, res) => {
