@@ -302,30 +302,18 @@ io.on("connection", (socket) => {
     });
     socket.on('d', (data) => {
         // console.log(data);
-        if (data[0] != uk_id) {
-            // if ()
-            // if (nlog.indexOf(data[2]) != -1) {
-                console.log(data)
-                io.to(data[0]).emit('d', data[1]);
-            // }
-        }
-        if (data[0] == uk_id) {
-            uk_id = data[1];
-        }
-        // socket.broadcast.emit('d', data);
-    });
-    socket.on('d10', (data) => {
-        // console.log(data);
-        if (data[0] != uk_id) {
-            // if ()
-            if (nlog.indexOf(data[2]) != -1) {
-                console.log(data)
-                io.to(data[0]).emit('d', data[1]);
+        // if (exr == 1) {
+            if (data[0] != uk_id) {
+                // if ()
+                // if (nlog.indexOf(data[2]) != -1) {
+                    console.log(data)
+                    io.to(data[0]).emit('d', data[1]);
+                // }
             }
-        }
-        if (data[0] == uk_id) {
-            uk_id = data[1];
-        }
+            if (data[0] == uk_id) {
+                uk_id = data[1];
+            }
+        // }
         // socket.broadcast.emit('d', data);
     });
     socket.on('agree', (data1) => {
