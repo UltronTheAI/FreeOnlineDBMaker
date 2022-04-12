@@ -16,7 +16,7 @@
             <img src="https://avatars.githubusercontent.com/u/79976106?v=4" class="absolute" style="width: 130px; transform: translateY(-70%); absolute">
             <h1 class="absolute font-bold text-gray-600">FreeOnlineDBMaker</h1> 
             <p class="absolute text-gray-600 w-2/3 h-2/3" style="transform: translateY(60%); text-align: center;">✔ You can not save [ number, password, email, link ] in this db..<br>, Share This Code To You'r Friends To Use You'r Database<br><br><span id="uid" class="bg-blue-500 shadow-2xl p-2 rounded text-white relative ml-2 mt-2"></span></p>
-            <button class="absolute bg-blue-500 p-2 rounded text-white font-bold shadow-2xl top-1 left-1 hover:bg-blue-400 transation-1" onclick="window.location='https://free-online-db-maker.herokuapp.com/agree';">Back</button>
+            <button class="absolute bg-blue-500 p-2 rounded text-white font-bold shadow-2xl top-1 left-1 hover:bg-blue-400 transation-1" onclick="window.location='https://free-online-db-maker.herokuapp.com/';">Back</button>
             <button class="absolute bg-blue-500 p-2 rounded text-white font-bold shadow-2xl top-1 left-1 hover:bg-blue-400 transation-1" onclick="window.location='https://free-online-db-maker.herokuapp.com/console';" style="left: 5%; transform: translateX(50px);">Console</button>
             <div class="controle w-2/3 h-2/3 bg-gradient-to-r from-indigo-500 absolute flex items-center justify-center" style="top: 110%; width: 100%; height: 60%;">
                 <div class="w-full h-full overflow-auto" style="width: 100%; height: 100%;">
@@ -42,9 +42,24 @@
         }
     </style>
     <script>
+        function GetURLParameter(sParam) {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) 
+            {
+                var sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] == sParam) 
+                {
+                    return sParameterName[1];
+                }
+            }
+        }​
+    </script>
+    <script>
         var ta = document.querySelector('#ta');
         var uids = document.querySelector('#uid');
         var jd = localStorage.getItem('jd');
+        var my_u = GetURLParameter('code');
         // var noti = localStorage.getItem('n');
         if (jd == undefined) {
             localStorage.setItem('jd', String('{}'));
@@ -84,7 +99,7 @@
                 var re2 = jd[data[0]];
                 // console.log(jd)
                 // console.log(data[2], re2)
-                socket.emit('d', [data[1], re2]);
+                socket.emit('d10', [data[1], re2, my_u]);
                 ta.value = JSON.stringify(jd, null, 4);
                 jd = JSON.stringify(jd);
                 var datetime_ = new Date();
@@ -106,7 +121,7 @@
                 // var re2 = '';
                 // console.log(jd)
                 // console.log(data[2], re2)
-                socket.emit('d', [data[1], 'Done']);
+                socket.emit('d10', [data[1], 'Done', my_u]);
                 ta.value = JSON.stringify(jd, null, 4);
                 jd = JSON.stringify(jd);
                 localStorage.setItem('jd', jd);
@@ -127,7 +142,7 @@
                 // var re2 = '';
                 // console.log(jd)
                 // console.log(data[2], re2)
-                socket.emit('d', [data[1], 'Done']);
+                socket.emit('d10', [data[1], 'Done', my_u]);
                 ta.value = JSON.stringify(jd, null, 4);
                 jd = JSON.stringify(jd);
                 localStorage.setItem('jd', jd);
