@@ -231,7 +231,7 @@ app.get('/GetUid', (req, res) => {
 
 
 
-server.listen(process.env.PORT || 5000);
+server.listen(process.env.PORT || process.env.PORT);
 
 io.on("connection", (socket) => {
     // console.log("User connected... user id = " + socket.id);
