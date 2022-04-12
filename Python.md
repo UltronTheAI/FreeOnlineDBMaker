@@ -20,7 +20,7 @@
 
     1. import FODB
     
-    2. db = FODB.Database ('uid') # set db var = FODB.Database and this function take one argument that is uid that you had copied, now past this copied uid in this function like this db = FODB.Database ('4EhffS3Sxut5XUZTAAAB'), it is for example uid, it is not real uid, you will get real uid on http://free-online-db-maker.herokuapp.com/GetUid
+    2. db = FODB.Database ('uid') # set db var = FODB.Database and this function take one argument that is uid that you had copied, now past this copied uid in this function like this db = FODB.Database ('4EhffS3Sxut5XUZTAAAB'), it is for example uid, it is not real uid, you will get real uid on http://free-online-db-maker.herokuapp.com/agree
     
     3. db.write('var', 'text') # this function help you to write data in you'r db, this function take two string arg...
 
