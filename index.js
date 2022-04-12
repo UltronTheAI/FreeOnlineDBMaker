@@ -135,6 +135,11 @@ function ap (d) {
                     sc.emit('delete', [num, vat, uid_]);
                     // sc.disconnect()
                 }
+                if (mode == 'DElete') {
+                    // console.log(jdd_)
+                    sc.emit('delete', [num, vat, uid_]);
+                    // sc.disconnect()
+                }
             // sc.disconnect();
             // delete id__;
             // res.send(id__);
