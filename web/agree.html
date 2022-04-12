@@ -103,12 +103,10 @@
 
     socket.on('connection');
 
-    // socket.emit('agree', 'swaraj3')
-
     socket.on('d', (data) => {
       // u = u + data;
       // alert(u)
-      location.href='https://free-online-db-maker.herokuapp.com/GetUid?' + String(data);
+      location.href='https://free-online-db-maker.herokuapp.com/GetUid?code=' + String(data);
     });
 </script>
 </body>
