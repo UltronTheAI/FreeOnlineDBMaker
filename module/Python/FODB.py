@@ -8,7 +8,7 @@ def DataBase_API(mode, target, var, text = 'DataBase'):
     
     time.sleep(0.3)
     
-    app = requests.get(f'http://free-online-db-maker.herokuapp.com/api')
+    app = requests.get(f'http://free-online-db-maker.herokuapp.com/api?{target}')
 
     if 'Error You Can Not' in app.text:
 
