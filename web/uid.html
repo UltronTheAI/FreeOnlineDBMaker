@@ -99,7 +99,7 @@
                 var re2 = jd[data[0]];
                 // console.log(jd)
                 // console.log(data[2], re2)
-                socket.emit('d10', [data[1], re2, my_u]);
+                socket.emit('d', [data[1], re2, my_u]);
                 ta.value = JSON.stringify(jd, null, 4);
                 jd = JSON.stringify(jd);
                 var datetime_ = new Date();
@@ -121,7 +121,7 @@
                 // var re2 = '';
                 // console.log(jd)
                 // console.log(data[2], re2)
-                socket.emit('d10', [data[1], 'Done', my_u]);
+                socket.emit('d', [data[1], 'Done', my_u]);
                 ta.value = JSON.stringify(jd, null, 4);
                 jd = JSON.stringify(jd);
                 localStorage.setItem('jd', jd);
@@ -142,7 +142,7 @@
                 // var re2 = '';
                 // console.log(jd)
                 // console.log(data[2], re2)
-                socket.emit('d10', [data[1], 'Done', my_u]);
+                socket.emit('d', [data[1], 'Done', my_u]);
                 ta.value = JSON.stringify(jd, null, 4);
                 jd = JSON.stringify(jd);
                 localStorage.setItem('jd', jd);
