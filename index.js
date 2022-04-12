@@ -14,6 +14,7 @@ var sec = 0;
 var uk_id = '';
 var uk_id2 = '';
 var gl = 9;
+var nlog = [];
 // var nv_ = [];
 
 function makeid() {
@@ -25,6 +26,7 @@ function makeid() {
       result += characters.charAt(Math.floor(Math.random() * 
  charactersLength));
    }
+   nlog.push(result);
    return result;
 }
 // console.log(makeid())
@@ -194,7 +196,7 @@ app.get('/agree', (req, res) => {
 app.get('/GetUid', (req, res) => {
     var ru = req.url.split('');
     var fru = '';
-    for (var i = 8; i < ru.length; i++) {
+    for (var i = 13; i < ru.length; i++) {
         fru += ru[i];
     }
     delete ru;
@@ -230,8 +232,9 @@ app.get('/GetUid', (req, res) => {
 });
 
 
+// console.log(process.env.PORT)
 
-server.listen(process.env.PORT || process.env.PORT);
+server.listen(process.env.PORT || 5000);
 
 io.on("connection", (socket) => {
     // console.log("User connected... user id = " + socket.id);
@@ -295,7 +298,10 @@ io.on("connection", (socket) => {
     socket.on('d', (data) => {
         // console.log(data);
         if (data[0] != uk_id) {
-            io.to(data[0]).emit('d', data[1]);
+            if (nlog.indexOf(data[2]) != -1) {
+                console.log(data)
+                io.to(data[0]).emit('d', data[1]);
+            }
         }
         if (data[0] == uk_id) {
             uk_id = data[1];
