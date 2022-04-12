@@ -59,7 +59,6 @@
         var ta = document.querySelector('#ta');
         var uids = document.querySelector('#uid');
         var jd = localStorage.getItem('jd');
-        var my_u = GetURLParameter('code');
         // var noti = localStorage.getItem('n');
         if (jd == undefined) {
             localStorage.setItem('jd', String('{}'));
@@ -87,6 +86,7 @@
         socket.on('connection');
         socket.on('get-uid', (uid) => {
             uids.innerHTML = uid;
+            var my_u = GetURLParameter('code');
         });
         socket.on('read', (data) => {
             // var d1 = data[0];
