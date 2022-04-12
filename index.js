@@ -110,7 +110,7 @@ function ap (d) {
                 if (mode == 'read') {
                     // console.log(jdd_)
                     sc.emit('read', [num, vat, uid_]);
-                    sc.disconnect()
+                    // sc.disconnect()
                 }
                 var e = 'Error You Can Not Save Password, Email, Link, Number, Payment Card Number In Thi\'s DB', te = jdd_[3], test2 = 0;
                 if (mode == 'write') {
@@ -123,7 +123,7 @@ function ap (d) {
                     
                     if (all == 2) {
                         sc.emit('write', [num, vat, uid_, jdd_[3]]);
-                        sc.disconnect()
+                        // sc.disconnect()
                     }
                     else {
                         uk_id = e;
@@ -132,7 +132,7 @@ function ap (d) {
                 if (mode == 'delete') {
                     // console.log(jdd_)
                     sc.emit('delete', [num, vat, uid_]);
-                    sc.disconnect()
+                    // sc.disconnect()
                 }
             // sc.disconnect();
             // delete id__;
