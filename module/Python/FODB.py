@@ -4,13 +4,14 @@ import requests, time
 
 def DataBase_API(mode, target, var, text = 'DataBase'):
 
-    app = requests.get(f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}')
+    app = requests.get(f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}').text
     
-    time.sleep(0.3)
+    del app
+    # time.sleep(0.1)
     
-    app = requests.get(f'http://free-online-db-maker.herokuapp.com/api?{target}')
+    app = requests.get(f'http://free-online-db-maker.herokuapp.com/api?{target}').text
 
-    if 'Error You Can Not' in app.text:
+    if 'Error You Can Not' in app:
 
         print ('\033[91m Error You Can Not Save Password, Email, Link, Number, Payment Card Number, -, +, /, *, space In Thi\'s DB')
         exit()
@@ -18,13 +19,13 @@ def DataBase_API(mode, target, var, text = 'DataBase'):
 
     # print (f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}')
 
-    cat = len(list(str(app.text)))
+    # cat = len(list(str(app.text)))
     
-    if cat == 20:
+    # if cat == 20:
 
-        return "Error db.907"
+        # return "Error db.907"
 
-    return app.text
+    return app
 
 # def DataBase_API3(mode, target, var, text = ''):
 
