@@ -15,6 +15,7 @@ var uk_id = '';
 var uk_id2 = '';
 var gl = 9;
 var nlog = [];
+var nlog5 = 0;
 // var nv_ = [];
 
 function makeid() {
@@ -104,7 +105,7 @@ function ap (d) {
                 // id__ = id_;
 
                 uk_id = uid_;
-                uk_id2 = num;
+                uk_id2 = jdd_[4];
                 // uk_id2 = uid_;
 
 
@@ -160,8 +161,12 @@ function ap (d) {
     if(exr == 1) {
         if (uk_id2 == jdd_[0]) {
             exr = 0;
+            nlog = parseInt(uk_id2);
         // if (uk_id2 == jdd_[0]) {
             return uk_id;
+        }
+        else {
+            return ' ';
         }
         // }
     }
@@ -187,6 +192,10 @@ app.get('/api', (req, res) => {
 
 app.get('/access', (req, res) => {
     res.send('hi')
+});
+
+app.get('/nlog', (req, res) => {
+    res.send(nlog5)
 });
 
 app.get('/', (req, res) => {
@@ -240,6 +249,7 @@ app.get('/GetUid', (req, res) => {
                     else {
                         res.sendFile(__dirname + '/web/uid.html');
                     }
+                    delete fru;
                 });
             }
             else {
