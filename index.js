@@ -99,12 +99,13 @@ function ap (d) {
         var mode = jdd_[1];
         var num = jdd_[0];
         var vat = jdd_[2];
+        var nwu = makeid()
         var sc = ioc('https://free-online-db-maker.herokuapp.com');
         sc.on ('get-uid', (uid_) => {
                 // id__ = id_;
 
                 uk_id = uid_;
-                uk_id2 = num;
+                uk_id2 = nwu;
                 // uk_id2 = uid_;
 
 
