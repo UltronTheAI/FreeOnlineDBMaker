@@ -259,7 +259,7 @@ io.on("connection", (socket) => {
     // console.log("User connected... user id = " + socket.id);
     var d = new Date();
     console.log(socket.id + ' connected at ' + String(d.getFullYear() + ' | ' + d.getMonth() + ' | ' + d.getDay() + ' | ' + d.getHours() + ' | ' + d.getMinutes() + ' | ' + d.getSeconds()))
-
+    delete d;
     socket.emit('get-uid', socket.id);
 
     // setInterval(() => {
@@ -271,6 +271,7 @@ io.on("connection", (socket) => {
         // uk = data[1];
         console.log(data)
                     io.to(data[0]).emit('read', [data[1], data[2]]);
+                    delete data;
     });
     socket.on('write', (data) => {
         // console.log(data);
@@ -300,9 +301,12 @@ io.on("connection", (socket) => {
                     data1 = JSON.stringify(data1)
                     fs.writeFile(__dirname + '/f.json', data1, err => {
                         // io.to(data[0]).emit('read', [data[1], data[2]]);
+                        delete data1;
+                        delete all, vat_check, te_check;
                         io.to(data[2]).emit('d', 'Error You Can Not Save Password, Email, Link, Number, Payment Card Number In Thi\'s DB')
                     });
                 }
+                delete data;
             });
         }
     });
@@ -313,6 +317,7 @@ io.on("connection", (socket) => {
         console.log(data)
                     // io.to(data[0]).emit('read', [data[1], data[2]]);
                     io.to(data[0]).emit('delete', [data[1], data[2]]);
+                    delete data;
     });
     socket.on('d', (data) => {
         // console.log(data);
@@ -328,6 +333,7 @@ io.on("connection", (socket) => {
                 io.sockets.sockets[data[0]]
                 uk_id = data[1];
             }
+            delete data;
         // }
         // socket.broadcast.emit('d', data);
     });
@@ -350,6 +356,7 @@ io.on("connection", (socket) => {
                         // data[data1] = {"start": [nd_.getFullYear(), nd_.getMonth(), nd_.getDay(), nd_.getHours(), nd_.getMinutes(), nd_.getSeconds()], "uid": u_n_id}
                         // data[u_n_id] = {"cid": ""}
                         console.log({"start": [nd_.getFullYear(), nd_.getMonth(), nd_.getDay(), nd_.getHours(), nd_.getMinutes(), nd_.getSeconds()], "uid": u_n_id, "user_name": data1});
+                        delete nd_;
                         data['nv_'].push(u_n_id)
                         data = JSON.stringify(data);
                         // nv_.push(data1)
@@ -367,6 +374,7 @@ io.on("connection", (socket) => {
                                 socket.emit('d', u_n_id);
                                 // }, 2000);
                             }
+                            delete err, data;
                             //file written successfully
                         })
                     } else {
@@ -377,6 +385,7 @@ io.on("connection", (socket) => {
         } else {
             socket.emit('d', 'This Name is undefined...');
         }
+        delete data1;
 //   console.log(data)
         // res.send(data);
 })
@@ -385,6 +394,7 @@ io.on("connection", (socket) => {
     socket.on('disconnect', () =>{
         var d = new Date();
         console.log(socket.id + ' disconnected at ' + String(d.getFullYear() + ' ' + d.getMonth() + ' ' + d.getDay() + ' ' + d.getHours() + ' ' + d.getMinutes() + ' ' + d.getSeconds()))
+        delete d;
     });
     // function updatevm(data__) {
     //     vm[3] = data__;
