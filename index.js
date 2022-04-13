@@ -325,7 +325,7 @@ io.on("connection", (socket) => {
                 // }
             }
             if (data[0] == uk_id) {
-                io.to(data[0]).disconnect();
+                io.sockets.sockets[data[0]]
                 uk_id = data[1];
             }
         // }
