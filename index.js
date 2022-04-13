@@ -161,8 +161,9 @@ function ap (d) {
     if(exr == 1) {
         if (uk_id2 == jdd_[0]) {
             exr = 0;
-            nlog = parseInt(uk_id2);
+            nlog = parseInt(uk_id2) + 21;
         // if (uk_id2 == jdd_[0]) {
+            console.log(uk_id2)
             return uk_id;
         }
         else {
