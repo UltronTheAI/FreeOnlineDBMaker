@@ -170,8 +170,9 @@ function ap (d) {
 setInterval( () => {
     if (exr == 1) { 
         sec += 1;
-        if(sec > 6) {
+        if(sec > 3) {
             sec = 0;
+            console.log(sec)
             exr = 0;
         }
     }
