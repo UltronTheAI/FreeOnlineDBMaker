@@ -195,7 +195,7 @@ app.get('/access', (req, res) => {
 });
 
 app.get('/nlog', (req, res) => {
-    res.send(nlog5)
+    res.send(String(nlog5))
 });
 
 app.get('/', (req, res) => {
