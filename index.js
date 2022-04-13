@@ -156,7 +156,7 @@ function ap (d) {
         // }
         // sleep (800);
         exr= 1;
-        return uk_id;
+        return uk_id2;
     }
     if(exr == 1) {
         if (uk_id2 == jdd_[0]) {
