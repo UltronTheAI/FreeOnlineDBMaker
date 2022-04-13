@@ -156,13 +156,13 @@ function ap (d) {
         // }
         // sleep (800);
         exr= 1;
-        return uk_id2;
+        return {"res": uk_id2};
     }
     if(exr == 1) {
         if (uk_id2 == jdd_[0]) {
             exr = 0;
         // if (uk_id2 == jdd_[0]) {
-            return uk_id;
+            return {"res": uk_id};
         }
         // }
     }
@@ -182,7 +182,7 @@ app.get('/api', (req, res) => {
     // var iuiid = ap (req.url);
     // var myuid = '';
     console.log(req.url)
-    res.send(ap(req.url));
+    res.json(ap(req.url));
 });
 
 app.get('/access', (req, res) => {
