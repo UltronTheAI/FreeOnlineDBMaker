@@ -99,13 +99,12 @@ function ap (d) {
         var mode = jdd_[1];
         var num = jdd_[0];
         var vat = jdd_[2];
-        var nwu = makeid()
         var sc = ioc('https://free-online-db-maker.herokuapp.com');
         sc.on ('get-uid', (uid_) => {
                 // id__ = id_;
 
                 uk_id = uid_;
-                uk_id2 = nwu;
+                uk_id2 = num;
                 // uk_id2 = uid_;
 
 
@@ -156,13 +155,13 @@ function ap (d) {
         // }
         // sleep (800);
         exr= 1;
-        return {"res": uk_id2};
+        return uk_id;
     }
     if(exr == 1) {
         if (uk_id2 == jdd_[0]) {
             exr = 0;
         // if (uk_id2 == jdd_[0]) {
-            return {"res": uk_id};
+            return uk_id;
         }
         // }
     }
@@ -182,7 +181,7 @@ app.get('/api', (req, res) => {
     // var iuiid = ap (req.url);
     // var myuid = '';
     console.log(req.url)
-    res.json(ap(req.url));
+    res.send(ap(req.url));
 });
 
 app.get('/access', (req, res) => {
