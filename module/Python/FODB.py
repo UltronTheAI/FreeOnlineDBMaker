@@ -4,12 +4,14 @@ import requests, time
 
 def DataBase_API(mode, target, var, text = 'DataBase'):
 
-    app = requests.get(f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}').text
+    rs = requests.Session()
+
+    app = rs.get(f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}').text
     
     del app
     # time.sleep(0.1)
     
-    app = requests.get(f'http://free-online-db-maker.herokuapp.com/api?{target}').text
+    app = rs.get(f'http://free-online-db-maker.herokuapp.com/api?{target}').text
 
     if 'Error You Can Not' in app:
 
@@ -49,6 +51,8 @@ class Database():
         global db
 
         db = uid
+        
+        return 
 
     def delete(self, var):
 
