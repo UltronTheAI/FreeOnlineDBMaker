@@ -128,7 +128,9 @@ function ap (d) {
                         // sc.disconnect()
                     }
                     else {
-                        uk_id = e;
+                        exr = 0;
+                        return e;
+                   
                     }
                 }
                 if (mode == 'delete') {
