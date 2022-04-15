@@ -1,22 +1,27 @@
-import requests, time
+import requests, time, random
 
 # Learn To Use Thi's DB With Python https://github.com/UltronTheAI/FreeOnlineDBMaker/blob/main/Python.md
 
 def DataBase_API(mode, target, var, text = 'DataBase'):
 
-    rs = requests.Session()
 
-    app = rs.get(f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}').text
+    rs = requests.Session()
+    n = int(rs.get('https://free-online-db-maker.herokuapp.com/nlog').text)
+    tr = random.randint(n + 1, n + 21)
+
+    app = rs.get(f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}%&%{tr}').text
     
     del app
-    # time.sleep(0.1)
+    time.sleep(0.28)
     
-    app = rs.get(f'http://free-online-db-maker.herokuapp.com/api?{target}').text
+    app = rs.get(f'http://free-online-db-maker.herokuapp.com/api?{tr}').text
 
-    if 'Error You Can Not' in app:
+    if 'Error ' in app:
 
         print ('\033[91m Error You Can Not Save Password, Email, Link, Number, Payment Card Number, -, +, /, *, space In Thi\'s DB')
         exit()
+    else:
+        return app
         # return 'Error You Can Not Save Password, Email, Link, Number, Payment Card Number In Thi\'s DB'
 
     # print (f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}')
@@ -27,7 +32,7 @@ def DataBase_API(mode, target, var, text = 'DataBase'):
 
         # return "Error db.907"
 
-    return app
+    # return app
 
 # def DataBase_API3(mode, target, var, text = ''):
 
@@ -51,7 +56,7 @@ class Database():
         global db
 
         db = uid
-        
+
         return 
 
     def delete(self, var):
