@@ -125,6 +125,7 @@ function ap (d) {
                     
                     if (all == 2) {
                         sc.emit('write', [num, vat, uid_, jdd_[3]]);
+                        return 'ok';
                         // sc.disconnect()
                     }
                     else {
@@ -136,11 +137,13 @@ function ap (d) {
                 if (mode == 'delete') {
                     // console.log(jdd_)
                     sc.emit('delete', [num, vat, uid_]);
+                    return 'ok';
                     // sc.disconnect()
                 }
                 if (mode == 'DElete') {
                     // console.log(jdd_)
                     sc.emit('delete', [num, vat, uid_]);
+                    return 'ok';
                     // sc.disconnect()
                 }
             // sc.disconnect();
