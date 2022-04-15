@@ -125,7 +125,7 @@ function ap (d) {
                     
                     if (all == 2) {
                         sc.emit('write', [num, vat, uid_, jdd_[3]]);
-                        return 'ok';
+                     
                         // sc.disconnect()
                     }
                     else {
