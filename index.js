@@ -6,8 +6,8 @@ const server = require("http").createServer(app);
 const ioc = require('socket.io-client');
 const io = require("socket.io")(server, { cors: { origin: "*" } });
 
-
-// var vm = {};
+   
+// var vm =  {};
 // var uk = '';
 var exr = 0;
 var sec = 0;
