@@ -6,6 +6,8 @@
 
 Chech It Out And Use This In Chrome For Free  https://free-online-db-maker.herokuapp.com/
 
+Download DB.exe https://github.com/UltronTheAI/FreeOnlineDBMaker/blob/main/FODB_EXE.rar 
+
 
 # Use DB With Module
 
