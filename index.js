@@ -173,7 +173,7 @@ function ap (d) {
             return uk_id;
         }
         else {
-            return ' ';
+            return 'wait';
         }
         // }
     }
