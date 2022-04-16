@@ -347,7 +347,9 @@ io.on("connection", (socket) => {
                 // }
             }
             if (data[0] == uk_id) {
-                io.sockets.sockets[data[0]].disconnect();
+                if (io.sockets.sockets[data[0]) {
+                    io.sockets.sockets[data[0].disconnect();
+                }
                 uk_id = data[1];
             }
             delete data;
