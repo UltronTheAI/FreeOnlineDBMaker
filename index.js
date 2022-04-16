@@ -84,7 +84,7 @@ function security(vat) {
 
 function ap (d) {
     // uk_id = '';
-    d = d.replaceAll('%25', '%)
+    d = d.replaceAll('%25', '%')
     d = d.split("");
     var t = '';
     for (let i = 5; i < d.length; i++) {
