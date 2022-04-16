@@ -1,39 +1,56 @@
 import requests, time, random
 
 # Learn To Use Thi's DB With Python https://github.com/UltronTheAI/FreeOnlineDBMaker/blob/main/Python.md
-
+s = requests.Session()
 
 def JRC():
-    mv = int(requests.get('https://free-online-db-maker.herokuapp.com/nlog').text)
+    mv = int(s.get('https://free-online-db-maker.herokuapp.com/nlog').text)
     return random.randint(mv + 1, mv + 21)
 
 
-def DataBase_API(mode, target, var, text = 'DataBase'):
+def DataBase_API(mode, target, var, text = 'DataBase', nm = 1):
 
     mv = JRC()
+    app = ''
 
-    app = requests.get(f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}%&%{mv}').text
+
+    while True:
+            
+            app = s.get(f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}%&%{mv}').text
+            if 'wait - 5' not in app:
+                
+                if nm == 1:
+
+                    if 'Error ' in app:
+
+                        print ('\033[91m Error You Can Not Save Password, Email, Link, Number, Payment Card Number, -, +, /, *, space In Thi\'s DB')
+                        exit()
+                    else:
+                        return 'Done'
+                else:
+                    time.sleep(0.1)
+                    return s.get(f'http://free-online-db-maker.herokuapp.com/api?{mv}').text
     
-    del app
-    # time.sleep(0.1)
+    # del app
+    # # time.sleep(0.1)
     
-    app = requests.get(f'http://free-online-db-maker.herokuapp.com/api?{mv}').text
+    # app = requests.get(f'http://free-online-db-maker.herokuapp.com/api?{mv}').text
 
-    if 'Error You Can Not' in app:
+    # if 'Error You Can Not' in app:
 
-        print ('\033[91m Error You Can Not Save Password, Email, Link, Number, Payment Card Number, -, +, /, *, space In Thi\'s DB')
-        exit()
-        # return 'Error You Can Not Save Password, Email, Link, Number, Payment Card Number In Thi\'s DB'
+    #     print ('\033[91m Error You Can Not Save Password, Email, Link, Number, Payment Card Number, -, +, /, *, space In Thi\'s DB')
+    #     exit()
+    #     # return 'Error You Can Not Save Password, Email, Link, Number, Payment Card Number In Thi\'s DB'
 
-    # print (f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}')
+    # # print (f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}')
 
-    # cat = len(list(str(app.text)))
+    # # cat = len(list(str(app.text)))
     
-    # if cat == 20:
+    # # if cat == 20:
 
-        # return "Error db.907"
+    #     # return "Error db.907"
 
-    return app
+    # return app
 
 # def DataBase_API3(mode, target, var, text = ''):
 
@@ -68,7 +85,7 @@ class Database():
 
         global db
 
-        return DataBase_API ('read', db, var)
+        return DataBase_API ('read', db, var, nm = 2)
 
     # def delete(self, var):
 
