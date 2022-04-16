@@ -84,7 +84,6 @@ function security(vat) {
 
 function ap (d) {
     // uk_id = '';
-    d = d.replaceAll('%25', '%')
     d = d.split("");
     var t = '';
     for (let i = 5; i < d.length; i++) {
@@ -92,6 +91,7 @@ function ap (d) {
     }
     t = t.replaceAll('%25', '%')
     var jdd_ = t.split('%&%')
+    console.log(jdd_)
     // jdd_[1] = jdd_[1].replaceAll('DElete', 'delete')
     // var id__ = '';
     if (exr == 0) {
