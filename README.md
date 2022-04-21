@@ -13,4 +13,3 @@ Download DB.exe https://github.com/UltronTheAI/FreeOnlineDBMaker/blob/main/FODB_
 
   1.Python => Go To <a href="https://ultrontheai.github.io/FreeOnlineDBMaker/module/Python.html">Module</a> And Use This DB
  
-
