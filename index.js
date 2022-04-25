@@ -101,7 +101,7 @@ function ap (d) {
         var mode = jdd_[1];
         var num = jdd_[0];
         var vat = jdd_[2];
-        var sc = ioc('https://free-online-db-maker.herokuapp.com');
+        var sc = ioc(process.env.SOC);
         sc.on ('get-uid', (uid_) => {
                 // id__ = id_;
 
