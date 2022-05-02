@@ -1,35 +1,97 @@
-import requests, time, random
+import requests, random, time
 
 # Learn To Use Thi's DB With Python https://github.com/UltronTheAI/FreeOnlineDBMaker/blob/main/Python.md
 s = requests.Session()
 
+mv = 0
+
 def JRC():
-    mv = int(s.get('https://free-online-db-maker.herokuapp.com/nlog').text)
-    return random.randint(mv + 1, mv + 21)
+    global mv
+    # mv = int(s.get('https://free-online-db-maker.herokuapp.com/nlog').text)
+    mv = random.randint(100 + 1, 500 + 21)
+    return 
 
+JRC()
+# exc = 0
 
-def DataBase_API(mode, target, var, text = 'DataBase', nm = 1):
+def DataBase_API(mode = '', target = '', var = '', text = 'DataBase', nm = 1):
+        global mv
+        # var = translate_a(var)
+        # print(var)
+        # mv += 1
+        # exc = exc + 1
+        # print(exc)
 
-    mv = JRC()
-    app = ''
+        app = ''
+        # if exc != 6:
 
-
-    while True:
-            
-            app = s.get(f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}%&%{mv}').text
-            if 'wait - 5' not in app:
+        while True:
+                s = requests.Session()
                 
-                if nm == 1:
+                app = s.get(f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}%&%{mv}').text
+                if '_%&%_wait = 5' not in app:
+                    
+                    if nm == 1:
 
-                    if 'Error ' in app:
+                        if 'Error -' in app:
 
-                        print ('\033[91m Error You Can Not Save Password, Email, Link, Number, Payment Card Number, -, +, /, *, space In Thi\'s DB')
-                        exit()
+                            # if ' - 8k' in app:
+
+                            #     return False
+                            # else:
+
+                                print (f'\033[91m Connection Error[{mode}]...')
+                                break
+                        else:
+                            return 'Done'
+                    # if nm == 5:
+                        # time.sleep(0.1)
+                        # return s.get(f'http://free-online-db-maker.herokuapp.com/api?{mv}').text
                     else:
-                        return 'Done'
-                else:
-                    time.sleep(0.1)
-                    return s.get(f'http://free-online-db-maker.herokuapp.com/api?{mv}').text
+                        # time.sleep(0.1)
+                        while True:
+                            s = requests.Session()
+                            app = s.get(f'http://free-online-db-maker.herokuapp.com/api?{mv}').text
+                            if len(app) != 20 and '_%&%_wait = 5' not in app:
+                                
+                                return app
+                break
+    # if exc == 6:
+    #     s.get(f'http://free-online-db-maker.herokuapp.com/api').text
+    #     time.sleep(0.15)
+
+    #     while True:
+    #             s = requests.Session()
+                
+    #             app = s.get(f'http://free-online-db-maker.herokuapp.com/api?{target}%&%{mode}%&%{var}%&%{text}%&%{mv}').text
+    #             if '_%&%_wait = 5' not in app:
+                    
+    #                 if nm == 1:
+
+    #                     if 'Error -' in app:
+
+    #                         # if ' - 8k' in app:
+
+    #                         #     return False
+    #                         # else:
+
+    #                             print (f'\033[91m Connection Error[{mode}]...')
+    #                             break
+    #                     else:
+    #                         return 'Done'
+    #                 # if nm == 5:
+    #                     # time.sleep(0.1)
+    #                     # return s.get(f'http://free-online-db-maker.herokuapp.com/api?{mv}').text
+    #                 else:
+    #                     # time.sleep(0.1)
+    #                     while True:
+    #                         s = requests.Session()
+    #                         app = s.get(f'http://free-online-db-maker.herokuapp.com/api?{mv}').text
+    #                         if len(app) != 20 and '_%&%_wait = 5' not in app:
+                                
+    #                             return app
+    #             break
+        
     
     # del app
     # # time.sleep(0.1)
@@ -73,19 +135,36 @@ class Database():
 
         global db
 
+        # try:
+        #     r = DataBase_API('code')
+        #     if r == False:
+        #         print ('\033[91mConnection Error...')
+        # except:
+        #     print ('\033[91mConnection Error...')
+        #     exit()
         db = uid
 
     def delete(self, var):
 
         global db
 
-        return DataBase_API ('delete', db, var)
+        var = var
+
+        try: return DataBase_API ('delete', db, var)
+        except:
+            print ('\033[91mConnection Error...')
+            exit()
 
     def read(self, var):
 
+        var = var
+
         global db
 
-        return DataBase_API ('read', db, var, nm = 2)
+        try: return DataBase_API ('read', db, var, nm = 2)
+        except:
+            print ('\033[91mConnection Error...')
+            exit()
 
     # def delete(self, var):
 
@@ -97,7 +176,13 @@ class Database():
 
         global db
 
-        return DataBase_API ('write', db, var, text)
+        var = var
+        text = text
+
+        try: return DataBase_API ('write', db, var, text)
+        except:
+            print ('\033[91mConnection Error...')
+            exit()
 
 # print(DataBase_API('write', 'kWsgz5n4-NiBJpYlAAAB', 'Hello', 'My_Data'))
 
